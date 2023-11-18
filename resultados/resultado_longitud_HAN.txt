@@ -23,6 +23,7 @@ Nodo 5:
   Vecinos:
     - Nodo: 4, Peso: 18, longitud: 998.8899999999994
     - Nodo: 6, Peso: 18, longitud: 1230.403370606567
+    - Nodo: 34, Peso: 20.0, longitud: 607.6831428466645
 
 Nodo 6:
   Coordenadas: (8103.51, 2585.42)
@@ -47,6 +48,7 @@ Nodo 9:
   Vecinos:
     - Nodo: 8, Peso: 18, longitud: 954.5
     - Nodo: 10, Peso: 18, longitud: 788.0199999999995
+    - Nodo: 33, Peso: 18.0, longitud: 352.99586966422163
 
 Nodo 10:
   Coordenadas: (7318.64, 5133.78)
@@ -188,9 +190,25 @@ Nodo 32:
   Vecinos:
     - Nodo: 31, Peso: 16, longitud: 1085.81
     - Nodo: 25, Peso: 18, longitud: 1444.01
+    - Nodo: 35, Peso: 17.0, longitud: 793.5329731019372
 
 Nodo 1:
   Coordenadas: (5360.71, 1354.05)
   Vecinos:
     - Nodo: 2, Peso: 16, longitud: 409.03028555352745
+
+Nodo 33:
+  Coordenadas: (8457.0, 5177.0)
+  Vecinos:
+    - Nodo: 9, Peso: 18.0, longitud: 352.99586966422163
+
+Nodo 34:
+  Coordenadas: (6478.0, 3050.0)
+  Vecinos:
+    - Nodo: 5, Peso: 20.0, longitud: 607.6831428466645
+
+Nodo 35:
+  Coordenadas: (595.0, 5929.0)
+  Vecinos:
+    - Nodo: 32, Peso: 17.0, longitud: 793.5329731019372
 
