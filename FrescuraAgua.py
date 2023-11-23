@@ -1,14 +1,15 @@
-# 4.- Frescura del agua en función de la distancia del nodo a la fuente. 
-#Una métrica de la calidad del agua es el tiempo que tarda en llegar de la fuente a un nodo. Esto es proporcional a la distancia. Por cada sector, determina cuál seria el nodo que recibe el agua con mayor tardanza.
-#Reporta su distancia a la fuente. 
+# 4.- Frescura del agua en función de la distancia del nodo a la fuente.
+# Una métrica de la calidad del agua es el tiempo que tarda en llegar de la fuente a un nodo. Esto es proporcional a la distancia. Por cada sector, determina cuál seria el nodo que recibe el agua con mayor tardanza.
+# Reporta su distancia a la fuente.
 
- # Salidas: Por cada sector, su fuente, nodo mas lejano y la longitud de esa distancia. 
+# Salidas: Por cada sector, su fuente, nodo mas lejano y la longitud de esa distancia.
 
 # Librerías Ncesarias
 import math
 import heapq
 import Graph
 import os
+
 
 def dijkstra(grafo, fuente):
     # Implementación del algoritmo de Dijkstra para encontrar la distancia más corta entre un nodo y todos los demás nodos en un grafo.
@@ -23,8 +24,11 @@ def dijkstra(grafo, fuente):
         if distancia_actual > distancias[nodo_actual]:
             continue
         # Se itera sobre los vecinos del nodo actual
-        for vecino, peso in grafo[nodo_actual]["vecinos"]:
-            peso = float(peso) 
+        for neighbor in grafo[nodo_actual]["vecinos"]:
+            vecino = neighbor["id"]
+            peso = neighbor["longitud"]
+
+            peso = float(peso)
             # Se calcula la nueva distancia
             nueva_distancia = distancia_actual + peso
             # Si la nueva distancia es menor a la distancia guardada en el diccionario se actualiza
@@ -36,7 +40,6 @@ def dijkstra(grafo, fuente):
     # Se regresa el diccionario con las distancias
 
     return distancias
-
 
 
 def frescura_agua(grafo):
@@ -55,17 +58,22 @@ def frescura_agua(grafo):
         nuevo_grafo[fuente]["distancia_maxima"] = distancia_maxima
     return nuevo_grafo
 
+
 def write_results_to_file(results, file_path):
     # Escribir los resultados en un archivo de texto para cada sector
     file_name = os.path.basename(file_path)
-    last_three_words = "_".join(file_name.split('/')[-1].split('_')[-3:])  # Extract the last three words
+    last_three_words = "_".join(
+        file_name.split("/")[-1].split("_")[-3:]
+    )  # Extract the last three words
     try:
-        with open(f"resultados/resultados_frescura_agua_{last_three_words}.txt", "w") as file:
+        with open(
+            f"resultados/resultados_frescura_agua_{last_three_words}.txt", "w"
+        ) as file:
             for fuente, detalles in results.items():
                 nodo_mas_lejano = detalles["nodo_mas_lejano"]
                 distancia_maxima = detalles["distancia_maxima"]
-                file.write(f"Sector {last_three_words} - Fuente: {fuente}, Nodo más lejano: {nodo_mas_lejano}, Distancia: {distancia_maxima}\n")
+                file.write(
+                    f"Sector {last_three_words} - Fuente: {fuente}, Nodo más lejano: {nodo_mas_lejano}, Distancia: {distancia_maxima}\n"
+                )
     except Exception as e:
         print(f"Error writing file: {e}")
-
-
