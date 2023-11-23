@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import math
 
 
 # Funcion para leer un archivo de texto y crear un grafo a partir de el
@@ -33,8 +34,16 @@ def create_graph(file_name):
         id1, id2, weight = edge.strip().split()
         id1 = int(id1)
         id2 = int(id2)
-        graph[id1]["vecinos"].append((id2, weight))
-        graph[id2]["vecinos"].append((id1, weight))
+        longitud = math.sqrt(
+            (graph[id2]["x"] - graph[id1]["x"]) ** 2
+            + (graph[id2]["y"] - graph[id1]["y"]) ** 2
+        )
+        graph[id1]["vecinos"].append(
+            {"id": id2, "capacidad": weight, "longitud": longitud}
+        )
+        graph[id2]["vecinos"].append(
+            {"id": id1, "capacidad": weight, "longitud": longitud}
+        )
 
     # Marcar nodo como oficina
     office_index = lines[4 + int(node_count) + int(edge_count)].strip()
@@ -70,8 +79,20 @@ def add_nodes(graph, new_nodes):
             "sector": None,
             "oficina": False,
         }
-        graph[closest_node[1]]["vecinos"].append((new_index, n_node["capacidad"]))
-        graph[new_index]["vecinos"].append((closest_node[1], n_node["capacidad"]))
+        graph[closest_node[1]]["vecinos"].append(
+            {
+                "id": new_index,
+                "capacidad": n_node["capacidad"],
+                "longitud": closest_node[0],
+            }
+        )
+        graph[new_index]["vecinos"].append(
+            {
+                "id": closest_node[1],
+                "capacidad": n_node["capacidad"],
+                "longitud": closest_node[0],
+            }
+        )
 
 
 def display_graph(graph):
