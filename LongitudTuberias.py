@@ -4,6 +4,7 @@
 
 # Librerías Ncesarias
 import math
+import Graph
 
 
 # Funcion para leer un archivo de texto y crear un grafo a partir de el
