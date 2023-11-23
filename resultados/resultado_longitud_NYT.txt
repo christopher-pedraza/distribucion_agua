@@ -73,7 +73,6 @@ Nodo 13:
   Vecinos:
     - Nodo: 12, Peso: 205.0, longitud: 213.41274563624359
     - Nodo: 14, Peso: 205.0, longitud: 351.4342043683284
-    - Nodo: 21, Peso: 120.0, longitud: 150.0133327407934
 
 Nodo 14:
   Coordenadas: (695.0, 2122.0)
@@ -103,7 +102,6 @@ Nodo 18:
   Vecinos:
     - Nodo: 12, Peso: 75.0, longitud: 362.0220987729893
     - Nodo: 19, Peso: 61.0, longitud: 309.64657272445305
-    - Nodo: 22, Peso: 20.0, longitud: 5567.225520849681
 
 Nodo 19:
   Coordenadas: (1419.0, 1594.0)
@@ -115,26 +113,10 @@ Nodo 20:
   Vecinos:
     - Nodo: 11, Peso: 63.0, longitud: 386.58763560155415
     - Nodo: 16, Peso: 63.0, longitud: 426.4141179651537
-    - Nodo: 23, Peso: 170.0, longitud: 217.04377438664304
 
 Nodo 1:
   Coordenadas: (610.0, 2716.0)
   Vecinos:
     - Nodo: 2, Peso: 181.0, longitud: 261.20490041344937
     - Nodo: 15, Peso: 207.0, longitud: 322.33212685055145
-
-Nodo 21:
-  Coordenadas: (930.0, 1779.0)
-  Vecinos:
-    - Nodo: 13, Peso: 120.0, longitud: 150.0133327407934
-
-Nodo 22:
-  Coordenadas: (6478.0, 3050.0)
-  Vecinos:
-    - Nodo: 18, Peso: 20.0, longitud: 5567.225520849681
-
-Nodo 23:
-  Coordenadas: (1269.0, 1069.0)
-  Vecinos:
-    - Nodo: 20, Peso: 170.0, longitud: 217.04377438664304
 
