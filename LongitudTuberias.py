@@ -2,6 +2,7 @@
 # Utiliza las coordenadas x,y de cada nodo para determinar la longitud de la tubería que conecta dos nodos.
 # Salidas: un listado de aristas, agregando la longitud a sus atributos preexistentes.
 
+
 # Funcion para escribir el grafo a un archivo de texto
 def add_file(grafo, nombre_archivo):
     with open(nombre_archivo, "w") as archivo:
