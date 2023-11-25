@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 import math
 import heapq
 
@@ -195,7 +196,7 @@ def crear_sector(grafo):
             grafo[farthest_node]["esMasLejano"] = True
 
 
-def display_graph(graph, tuberias_cerradas=[]):
+def display_graph(graph, tuberias_cerradas=[], titulo=""):
     # Coordenadas de los nodos
     x = {}
     y = {}
@@ -250,6 +251,24 @@ def display_graph(graph, tuberias_cerradas=[]):
     # Desplegar las fuentes
     ax.scatter(x_fuente, y_fuente, color="blue", marker="^")
 
+    # Crear líneas personalizadas para agregar a la leyenda
+    tuberias_line = mlines.Line2D(
+        [], [], color="black", linewidth=0.5, label="Tuberías"
+    )
+    cerradas_line = mlines.Line2D(
+        [], [], color="gray", linewidth=0.5, linestyle=":", label="Tuberías Cerradas"
+    )
+    fuentes_de_Agua = mlines.Line2D([], [], color="blue", marker="^", label="Fuente")
+
+    # Agregar las líneas personalizadas a la leyenda sin graficarlas directamente
+    ax.legend(
+        handles=[fuentes_de_Agua, tuberias_line, cerradas_line], loc="upper right"
+    )
+
+    plt.title(titulo)
+    plt.xlabel("Eje X")
+    plt.ylabel("Eje Y")
+
     # Colorear los nodos por sector y agregar etiquetas
     for sector, values in x.items():
         ax.scatter(values, y[sector])
@@ -259,5 +278,7 @@ def display_graph(graph, tuberias_cerradas=[]):
     # Agregar etiquetas a las fuentes
     for i, txt in enumerate(labels_fuente):
         ax.annotate(txt, (x_fuente[i], y_fuente[i]))
+
+    plt.gca().set_aspect("equal")
 
     plt.show()

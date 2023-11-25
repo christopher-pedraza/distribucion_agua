@@ -2,22 +2,33 @@ from collections import deque
 from copy import deepcopy
 
 
+# Función para encontrar un camino desde el nodo fuente al nodo destino
+# Recibe: grafo, nodo fuente, nodo destino
+# Retorna: camino, flujo
 def bfs(grafo, nodo_fuente, nodo_destino):
     q = deque()
+    # Agregar nodo fuente a la cola
     q.append(nodo_fuente)
     visitado = {i: False for i in grafo}
     capacidades = {i: float("inf") for i in grafo}
     predecesor = {i: None for i in grafo}
 
+    # Mientras que la cola no esté vacía
     while q:
+        # Sacar el primer elemento de la cola
         nodo = q.popleft()
+        # Iterar sobre los vecinos del nodo que salió de la cola
         for vecino in grafo[nodo]["vecinos"]:
+            # Si el vecino no ha sido visitado y tiene capacidad
             if vecino["capacidad"] > 0 and not visitado[vecino["id"]]:
+                # Actualizar capacidades, predecesores, y visitados
                 capacidades[vecino["id"]] = vecino["capacidad"]
                 visitado[vecino["id"]] = True
                 predecesor[vecino["id"]] = nodo
+                # Agregar el vecino a la cola
                 q.append(vecino["id"])
 
+    # Reconstruir el camino y encontrar el bottleneck
     path = []
     flujo = float("inf")
     i = nodo_destino
@@ -28,19 +39,28 @@ def bfs(grafo, nodo_fuente, nodo_destino):
             break
         i = predecesor[i]
 
+    # Si el camino tiene más de un nodo, agregar el nodo fuente y revertir el camino
     if len(path) > 1:
         path.append(nodo_fuente)
         path.reverse()
 
         return path, flujo
+    # Si no, no hay camino
     else:
         return None, None
 
 
+# Función para encontrar el flujo máximo desde cada fuente del grafo al nodo más lejano
+# en el sector
+# Recibe: grafo, nodo destino
+# Regresa: diccionario con el flujo máximo desde cada fuente al nodo destino, al igual que
+# el uso de capacidad de cada tubería
 def max_flow(grafo, nodo_destino):
     flujos_maximos = {}
 
     for nodo in grafo:
+        # Si el nodo es una fuente y está en el mismo sector que el nodo destino, se calcula
+        # el flujo máximo desde este nodo fuente al nodo destino
         if (
             grafo[nodo]["fuente"]
             and grafo[nodo]["sector"] == grafo[nodo_destino]["sector"]
@@ -50,13 +70,18 @@ def max_flow(grafo, nodo_destino):
 
             usos = {}
 
+            # Encontrar el camino más corto desde el nodo fuente al nodo destino
+            # Si path regresa None, no hay camino y se termina de buscar. Esto lo estara
+            # haciendo varias veces, alterando las capacidades de las tuberias hasta que
+            # no haya más caminos
             path, bottleneck = bfs(R, nodo, nodo_destino)
             while path:
+                # Iterar sobre el camino recibido por el BFS
                 for i in range(len(path) - 1):
                     u = path[i]
                     v = path[i + 1]
 
-                    # Actualizar capacidades en el grafo residual
+                    # Actualizar capacidades de las aristas en ambas direcciones
                     for vecino in R[u]["vecinos"]:
                         if vecino["id"] == v:
                             vecino["capacidad"] -= bottleneck
@@ -68,13 +93,17 @@ def max_flow(grafo, nodo_destino):
                             usos[key] = usos.get(key, 0) + bottleneck
                             break
 
+                # Actualizar el flujo máximo y encontrar un nuevo camino
                 flujo_maximo += bottleneck
                 path, bottleneck = bfs(R, nodo, nodo_destino)
 
+            # Guardar el flujo máximo y el uso de capacidad de cada tubería
             flujos_maximos[nodo] = (flujo_maximo, deepcopy(usos))
     return flujos_maximos
 
 
+# Función para guardar los resultados en un archivo
+#
 def save_to_file(data, name, grafo):
     prev_sector = ""
     with open(f"resultados/resultado_MaxFlow_{name}.txt", "w") as f:
