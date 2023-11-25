@@ -2,6 +2,7 @@ import Graph
 import LongitudTuberias
 import FrescuraAgua
 import Sectorizacion
+import MaxFlow
 
 
 def problema_2():
@@ -71,6 +72,14 @@ def problema_7():
     Graph.add_nodes(grafo_PES, new_nodes_PES)
 
 
+def problema_5():
+    grafos = [grafo_FOS, grafo_HAN, grafo_NYT, grafo_PES]
+    for grafo in grafos:
+        for nodo in grafo:
+            if grafo[nodo]["fuente"]:
+                print(MaxFlow.max_flow(grafo, nodo))
+
+
 if __name__ == "__main__":
     # Creacion de los grafos
     grafo_FOS, new_nodes_FOS = Graph.create_graph("grafos/FOS.txt")
@@ -81,3 +90,4 @@ if __name__ == "__main__":
     problema_3()
     problema_4()
     problema_7()
+    problema_5()

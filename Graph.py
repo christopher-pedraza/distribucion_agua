@@ -36,6 +36,7 @@ def create_graph(file_name):
         id1, id2, weight = edge.strip().split()
         id1 = int(id1)
         id2 = int(id2)
+        weight = float(weight)
         longitud = math.sqrt(
             (graph[id2]["x"] - graph[id1]["x"]) ** 2
             + (graph[id2]["y"] - graph[id1]["y"]) ** 2
