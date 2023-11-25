@@ -33,10 +33,10 @@ def problema_3():
     tuberias_cerradas_PES = Sectorizacion.sectores_cerrados(
         grafo_PES, "resultados/resultado_Sectorizacion_PES.txt"
     )
-    Graph.display_graph(grafo_FOS, tuberias_cerradas_FOS)
-    Graph.display_graph(grafo_HAN, tuberias_cerradas_HAN)
-    Graph.display_graph(grafo_NYT, tuberias_cerradas_NYT)
-    Graph.display_graph(grafo_PES, tuberias_cerradas_PES)
+    Graph.display_graph(grafo_FOS, tuberias_cerradas_FOS, "Grafo Final FOS")
+    Graph.display_graph(grafo_HAN, tuberias_cerradas_HAN, "Grafo Final HAN ")
+    Graph.display_graph(grafo_NYT, tuberias_cerradas_NYT, "Grafo Final NYT")
+    Graph.display_graph(grafo_PES, tuberias_cerradas_PES, "Grafo Final PES")
 
 
 def problema_4():
