@@ -28,6 +28,7 @@ def create_graph(file_name):
             "vecinos": [],
             "sector": None,
             "oficina": False,
+            "esMasLejano": False,
         }
 
     # Guardar las aristas no dirigidas
@@ -146,13 +147,27 @@ def crear_sector(grafo):
                 grafo[nodo]["sector"] = nodo2
                 distancia = grafo_distancias[nodo2][nodo]
 
+    # Calcular los nodos mas lejanos desde cada fuente y que esten en el mismo sector
+    for fuente, distances in grafo_distancias.items():
+        max_distance = float("-inf")
+        farthest_node = None
+        for destination, distance in distances.items():
+            if (
+                distance > max_distance
+                and grafo[fuente]["sector"] == grafo[destination]["sector"]
+            ):
+                max_distance = distance
+                farthest_node = destination
+        if farthest_node is not None:
+            grafo[farthest_node]["esMasLejano"] = True
 
-def display_graph(graph):
-    x = []
-    y = []
+
+def display_graph(graph, tuberias_cerradas=[]):
+    x = {}
+    y = {}
     x_fuente = []
     y_fuente = []
-    labels = []
+    labels = {}
     labels_fuente = []
 
     for node_id, values in graph.items():
@@ -161,16 +176,45 @@ def display_graph(graph):
             y_fuente.append(values["y"])
             labels_fuente.append(node_id)
         else:
-            x.append(values["x"])
-            y.append(values["y"])
-            labels.append(node_id)
+            temp = x.get(values["sector"], [])
+            temp.append(values["x"])
+            x[values["sector"]] = temp
+            temp = y.get(values["sector"], [])
+            temp.append(values["y"])
+            y[values["sector"]] = temp
+            temp = labels.get(values["sector"], [])
+            temp.append(node_id)
+            labels[values["sector"]] = temp
 
     fig, ax = plt.subplots()
-    ax.scatter(x, y, color="black")
-    ax.scatter(x_fuente, y_fuente, color="blue")
 
-    for i, txt in enumerate(labels):
-        ax.annotate(txt, (x[i], y[i]))
+    # Desplegar las conexiones entre nodos
+    for node_id, values in graph.items():
+        for neighbor in values["vecinos"]:
+            neighbor_id = neighbor["id"]
+            if (
+                node_id < neighbor_id
+                and (node_id, neighbor_id) not in tuberias_cerradas
+            ):
+                x_values = [values["x"], graph[neighbor_id]["x"]]
+                y_values = [values["y"], graph[neighbor_id]["y"]]
+                ax.plot(x_values, y_values, color="black", linewidth=0.5)
+            elif node_id < neighbor_id:
+                x_values = [values["x"], graph[neighbor_id]["x"]]
+                y_values = [values["y"], graph[neighbor_id]["y"]]
+                ax.plot(x_values, y_values, color="gray", linewidth=0.5, linestyle=":")
+
+    # Desplegar las fuentes
+    ax.scatter(x_fuente, y_fuente, color="blue", marker="^")
+
+    # Colorear los nodos por sector y agregar etiquetas
+    for sector, values in x.items():
+        ax.scatter(values, y[sector])
+        for i, txt in enumerate(labels[sector]):
+            ax.annotate(txt, (values[i], y[sector][i]))
+
+    # Agregar etiquetas a las fuentes
     for i, txt in enumerate(labels_fuente):
         ax.annotate(txt, (x_fuente[i], y_fuente[i]))
+
     plt.show()

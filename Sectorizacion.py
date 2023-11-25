@@ -27,3 +27,5 @@ def sectores_cerrados(grafo, nombre_archivo):
             "---------------------------------- Tuberias Cerradas -----------------------------------------------\n"
         )
         archivo.write(f"{lst_cerrada}")
+
+    return lst_cerrada

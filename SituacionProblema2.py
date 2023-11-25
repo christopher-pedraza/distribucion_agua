@@ -3,6 +3,7 @@ import LongitudTuberias
 import FrescuraAgua
 import Sectorizacion
 
+
 def problema_2():
     # Escribe en un archivo de texto
     LongitudTuberias.add_file(grafo_FOS, "resultados/resultado_longitud_FOS.txt")
@@ -10,18 +11,31 @@ def problema_2():
     LongitudTuberias.add_file(grafo_NYT, "resultados/resultado_longitud_NYT.txt")
     LongitudTuberias.add_file(grafo_PES, "resultados/resultado_longitud_PES.txt")
 
+
 def problema_3():
     Graph.crear_sector(grafo_FOS)
-    Sectorizacion.sectores_cerrados(grafo_FOS, "resultados/resultado_Sectorizacion_FOS.txt")
+    tuberias_cerradas_FOS = Sectorizacion.sectores_cerrados(
+        grafo_FOS, "resultados/resultado_Sectorizacion_FOS.txt"
+    )
 
     Graph.crear_sector(grafo_HAN)
-    Sectorizacion.sectores_cerrados(grafo_HAN, "resultados/resultado_Sectorizacion_HAN.txt")
+    tuberias_cerradas_HAN = Sectorizacion.sectores_cerrados(
+        grafo_HAN, "resultados/resultado_Sectorizacion_HAN.txt"
+    )
 
     Graph.crear_sector(grafo_NYT)
-    Sectorizacion.sectores_cerrados(grafo_NYT, "resultados/resultado_Sectorizacion_NYT.txt")
+    tuberias_cerradas_NYT = Sectorizacion.sectores_cerrados(
+        grafo_NYT, "resultados/resultado_Sectorizacion_NYT.txt"
+    )
 
     Graph.crear_sector(grafo_PES)
-    Sectorizacion.sectores_cerrados(grafo_PES, "resultados/resultado_Sectorizacion_PES.txt")
+    tuberias_cerradas_PES = Sectorizacion.sectores_cerrados(
+        grafo_PES, "resultados/resultado_Sectorizacion_PES.txt"
+    )
+    Graph.display_graph(grafo_FOS, tuberias_cerradas_FOS)
+    Graph.display_graph(grafo_HAN, tuberias_cerradas_HAN)
+    Graph.display_graph(grafo_NYT, tuberias_cerradas_NYT)
+    Graph.display_graph(grafo_PES, tuberias_cerradas_PES)
 
 
 def problema_4():
@@ -49,7 +63,7 @@ def problema_4():
         resultado_frescura_agua_PES, "resultados/resultados_frescura_agua_PES.txt"
     )
 
-   
+
 def problema_7():
     Graph.add_nodes(grafo_FOS, new_nodes_FOS)
     Graph.add_nodes(grafo_HAN, new_nodes_HAN)
