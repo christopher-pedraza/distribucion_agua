@@ -1,4 +1,4 @@
----------------------------------- Sectorización -----------------------------------------------
+---------------------------------- Sectorizacion -----------------------------------------------
 Nodo: 1 sector al que pertenece: 1
 Nodo: 2 sector al que pertenece: 1
 Nodo: 3 sector al que pertenece: 1

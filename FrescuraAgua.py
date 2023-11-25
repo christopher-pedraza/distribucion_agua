@@ -7,39 +7,8 @@
 # Librerías Necesarias
 import math
 import heapq
-import Graph
 import os
-
-
-def dijkstra(grafo, fuente):
-    # Implementación del algoritmo de Dijkstra para encontrar la distancia más corta entre un nodo y todos los demás nodos en un grafo.
-    distancias = {nodo: math.inf for nodo in grafo}
-    distancias[fuente] = 0
-    cola_prioridad = [(0, fuente)]
-
-    # Mientras la cola de prioridad no esté vacía se sigue iterando sobre los nodos
-    while cola_prioridad:
-        distancia_actual, nodo_actual = heapq.heappop(cola_prioridad)
-        # Si la distancia actual es mayor a la distancia guardada en el diccionario se ignora
-        if distancia_actual > distancias[nodo_actual]:
-            continue
-        # Se itera sobre los vecinos del nodo actual
-        for neighbor in grafo[nodo_actual]["vecinos"]:
-            vecino = neighbor["id"]
-            peso = neighbor["longitud"]
-
-            peso = float(peso)
-            # Se calcula la nueva distancia
-            nueva_distancia = distancia_actual + peso
-            # Si la nueva distancia es menor a la distancia guardada en el diccionario se actualiza
-            if nueva_distancia < distancias[vecino]:
-                distancias[vecino] = nueva_distancia
-                # Se agrega el vecino a la cola de prioridad
-                heapq.heappush(cola_prioridad, (nueva_distancia, vecino))
-
-    # Se regresa el diccionario con las distancias
-
-    return distancias
+from Graph import dijkstra
 
 
 def frescura_agua(grafo):
