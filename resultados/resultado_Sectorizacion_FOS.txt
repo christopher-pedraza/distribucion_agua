@@ -1,4 +1,4 @@
----------------------------------- Sectorización -----------------------------------------------
+---------------------------------- Sectorizacion -----------------------------------------------
 Nodo: 2 sector al que pertenece: 37
 Nodo: 3 sector al que pertenece: 37
 Nodo: 4 sector al que pertenece: 7

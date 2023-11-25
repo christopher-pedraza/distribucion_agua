@@ -2,6 +2,7 @@ import Graph
 import LongitudTuberias
 import FrescuraAgua
 import Sectorizacion
+import FrescuraAgua
 
 def problema_2():
     # Escribe en un archivo de texto
@@ -24,30 +25,22 @@ def problema_3():
     Sectorizacion.sectores_cerrados(grafo_PES, "resultados/resultado_Sectorizacion_PES.txt")
 
 
+
 def problema_4():
-    # Calcula la frescura del agua basada en la distancia a la fuente para cada sector
-    grafo_FOS, _ = Graph.create_graph("grafos/FOS.txt")
-    resultado_frescura_agua_FOS = FrescuraAgua.frescura_agua(grafo_FOS)
-    FrescuraAgua.write_results_to_file(
-        resultado_frescura_agua_FOS, "resultados/resultado_frescura_agua_FOS.txt"
-    )
+    Graph.crear_sector(grafo_FOS)
+    resultado_FOS = FrescuraAgua.max_delay_per_sector(grafo_FOS)
+    FrescuraAgua.guardar_resultados_en_archivo("resultados/resultado_FrescuraAgua_FOS.txt", resultado_FOS)
+    Graph.crear_sector(grafo_HAN)
+    resultado_HAN = FrescuraAgua.max_delay_per_sector(grafo_HAN)
+    FrescuraAgua.guardar_resultados_en_archivo("resultados/resultado_FrescuraAgua_HAN.txt", resultado_HAN)
+    Graph.crear_sector(grafo_NYT)
+    resultado_NYT = FrescuraAgua.max_delay_per_sector(grafo_NYT)
+    FrescuraAgua.guardar_resultados_en_archivo("resultados/resultado_FrescuraAgua_NYT.txt", resultado_NYT)
+    Graph.crear_sector(grafo_PES)
+    resultado_PES = FrescuraAgua.max_delay_per_sector(grafo_PES)
+    FrescuraAgua.guardar_resultados_en_archivo("resultados/resultado_FrescuraAgua_PES.txt", resultado_PES)
 
-    resultado_frescura_agua_HAN = FrescuraAgua.frescura_agua(grafo_HAN)
-    FrescuraAgua.write_results_to_file(
-        resultado_frescura_agua_HAN, "resultados/resultados_frescura_agua_HAN.txt"
-    )
 
-    grafo_NYT, _ = Graph.create_graph("grafos/NYT.txt")
-    resultado_frescura_agua_NYT = FrescuraAgua.frescura_agua(grafo_NYT)
-    FrescuraAgua.write_results_to_file(
-        resultado_frescura_agua_NYT, "resultados/resultados_frescura_agua_NYT.txt"
-    )
-
-    grafo_PES, _ = Graph.create_graph("grafos/PES.txt")
-    resultado_frescura_agua_PES = FrescuraAgua.frescura_agua(grafo_PES)
-    FrescuraAgua.write_results_to_file(
-        resultado_frescura_agua_PES, "resultados/resultados_frescura_agua_PES.txt"
-    )
 
    
 def problema_7():
@@ -63,7 +56,13 @@ if __name__ == "__main__":
     grafo_HAN, new_nodes_HAN = Graph.create_graph("grafos/HAN.txt")
     grafo_NYT, new_nodes_NYT = Graph.create_graph("grafos/NYT.txt")
     grafo_PES, new_nodes_PES = Graph.create_graph("grafos/PES.txt")
+    Graph.crear_sector(grafo_FOS)
+    Graph.crear_sector(grafo_HAN)
+    Graph.crear_sector(grafo_NYT)
+    Graph.crear_sector(grafo_PES)
+
     problema_2()
     problema_3()
     problema_4()
     problema_7()
+

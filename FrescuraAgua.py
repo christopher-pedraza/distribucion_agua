@@ -5,75 +5,57 @@
 # Salidas: Por cada sector, su fuente, nodo mas lejano y la longitud de esa distancia.
 
 # Librerías Necesarias
-import math
 import heapq
-import Graph
-import os
 
 
-def dijkstra(grafo, fuente):
-    # Implementación del algoritmo de Dijkstra para encontrar la distancia más corta entre un nodo y todos los demás nodos en un grafo.
-    distancias = {nodo: math.inf for nodo in grafo}
-    distancias[fuente] = 0
-    cola_prioridad = [(0, fuente)]
+def dijkstra(graph, start):
+    distances = {node: float('inf') for node in graph}
+    distances[start] = 0
+    pq = [(0, start)]
 
-    # Mientras la cola de prioridad no esté vacía se sigue iterando sobre los nodos
-    while cola_prioridad:
-        distancia_actual, nodo_actual = heapq.heappop(cola_prioridad)
-        # Si la distancia actual es mayor a la distancia guardada en el diccionario se ignora
-        if distancia_actual > distancias[nodo_actual]:
+    while pq:
+        current_distance, current_node = heapq.heappop(pq)
+
+        if current_distance > distances[current_node]:
             continue
-        # Se itera sobre los vecinos del nodo actual
-        for neighbor in grafo[nodo_actual]["vecinos"]:
-            vecino = neighbor["id"]
-            peso = neighbor["longitud"]
 
-            peso = float(peso)
-            # Se calcula la nueva distancia
-            nueva_distancia = distancia_actual + peso
-            # Si la nueva distancia es menor a la distancia guardada en el diccionario se actualiza
-            if nueva_distancia < distancias[vecino]:
-                distancias[vecino] = nueva_distancia
-                # Se agrega el vecino a la cola de prioridad
-                heapq.heappush(cola_prioridad, (nueva_distancia, vecino))
+        for neighbor in graph[current_node]['vecinos']:
+            neighbor_id = neighbor['id']
+            edge_weight = neighbor['longitud']
+            distance = current_distance + edge_weight
 
-    # Se regresa el diccionario con las distancias
+            if distance < distances[neighbor_id]:
+                distances[neighbor_id] = distance
+                heapq.heappush(pq, (distance, neighbor_id))
 
-    return distancias
+    return distances
+def max_delay_per_sector(graph):
+    sectors = {}
+    for node_id, node_info in graph.items():
+        if node_info['fuente']:  # Excluir nodos fuentes
+            continue
+        
+        sector = node_info['sector']
+        if sector not in sectors:
+            sectors[sector] = {'fuente': None, 'nodo_mas_lejano': None, 'distancia': float('-inf')}
 
+        distances = dijkstra(graph, sector)  # Usar el número de sector como fuente
 
-def frescura_agua(grafo):
-    # Copia el grafo para no modificar el original
-    nuevo_grafo = grafo.copy()
-    for fuente in grafo:
-        # Se calcula la distancia más corta entre la fuente y todos los demás nodos del grafo
-        distancias = dijkstra(grafo, fuente)
-        # Se obtiene el nodo más lejano y su distancia
-        nodo_mas_lejano = max(distancias, key=distancias.get)
-        # Se guarda el nodo más lejano y su distancia en el grafo
-        distancia_maxima = distancias[nodo_mas_lejano]
-        # Se guarda el nodo más lejano y su distancia en el grafo
-        nuevo_grafo[fuente]["nodo_mas_lejano"] = nodo_mas_lejano
-        # Se guarda el nodo más lejano y su distancia en el grafo
-        nuevo_grafo[fuente]["distancia_maxima"] = distancia_maxima
-    return nuevo_grafo
+        max_distance = max([distances[node] for node, info in graph.items() if not info['fuente'] and info['sector'] == sector])
+
+        if max_distance > sectors[sector]['distancia']:
+            sectors[sector]['fuente'] = sector
+            sectors[sector]['nodo_mas_lejano'] = max(distances, key=distances.get)
+            sectors[sector]['distancia'] = max_distance
+
+    return sectors
 
 
-def write_results_to_file(results, file_path):
-    # Escribir los resultados en un archivo de texto para cada sector
-    file_name = os.path.basename(file_path)
-    last_three_words = "_".join(
-        file_name.split("/")[-1].split("_")[-3:]
-    )  # Extract the last three words
-    try:
-        with open(
-            f"resultados/resultados_frescura_agua_{last_three_words}.txt", "w"
-        ) as file:
-            for fuente, detalles in results.items():
-                nodo_mas_lejano = detalles["nodo_mas_lejano"]
-                distancia_maxima = detalles["distancia_maxima"]
-                file.write(
-                    f"Sector {last_three_words} - Fuente: {fuente}, Nodo más lejano: {nodo_mas_lejano}, Distancia: {distancia_maxima}\n"
-                )
-    except Exception as e:
-        print(f"Error writing file: {e}")
+
+def guardar_resultados_en_archivo(nombre_archivo, resultados):
+    with open(nombre_archivo, 'w') as file:
+        for sector, data in resultados.items():
+            print(f"Para el sector {sector}:", file=file)
+            print(f"Fuente: {data['fuente']}", file=file)
+            print(f"Nodo más lejano: {data['nodo_mas_lejano']}", file=file)
+            print(f"Distancia: {data['distancia']}\n", file=file)
