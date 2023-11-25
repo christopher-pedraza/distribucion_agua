@@ -62,17 +62,26 @@ def create_graph(file_name):
     return graph, new_nodes
 
 
+# Funcion para agregar nuevos nodos al grafo
+# Recibe: El grafo y los nuevos nodos
+# Regresa: Nada
 def add_nodes(graph, new_nodes):
+    # Se itera sobre los nuevos nodos
     for n_node in new_nodes:
+        # Se busca el nodo mas cercano al nuevo nodo
         closest_node = [float("inf"), None]
         for node_id, values in graph.items():
+            # Se ignora si el nodo es una fuente
             if not values["fuente"]:
+                # Se calcula la distancia entre los nodos
                 distance = (
                     (n_node["x"] - values["x"]) ** 2 + (n_node["y"] - values["y"]) ** 2
                 ) ** 0.5
+                # Si la distancia es menor a la distancia guardada se guarda la nueva distancia y el id del nodo
                 if distance < closest_node[0]:
                     closest_node = [distance, node_id]
 
+        # Tomamos el indice mas grande y le sumamos 1 para crear el nuevo nodo
         new_index = max(graph) + 1
         graph[new_index] = {
             "x": n_node["x"],
@@ -83,6 +92,7 @@ def add_nodes(graph, new_nodes):
             "oficina": False,
             "esMasLejano": False,
         }
+        # Se agrega el nuevo nodo a la lista de vecinos del nodo mas cercano
         graph[closest_node[1]]["vecinos"].append(
             {
                 "id": new_index,
@@ -90,6 +100,7 @@ def add_nodes(graph, new_nodes):
                 "longitud": closest_node[0],
             }
         )
+        # Se agrega el nodo mas cercano a la lista de vecinos del nuevo nodo
         graph[new_index]["vecinos"].append(
             {
                 "id": closest_node[1],
@@ -99,6 +110,9 @@ def add_nodes(graph, new_nodes):
         )
 
 
+# Funcion para encontrar la distancia mas corta entre un nodo y todos los demas nodos en un grafo
+# Recibe: El grafo y el nodo fuente
+# Regresa: Un diccionario con las distancias
 def dijkstra(grafo, fuente):
     # Implementación del algoritmo de Dijkstra para encontrar la distancia más corta entre un nodo y todos los demás nodos en un grafo.
     distancias = {nodo: math.inf for nodo in grafo}
@@ -129,37 +143,54 @@ def dijkstra(grafo, fuente):
     return distancias
 
 
+# Funcion para crear los sectores
+# Recibe: El grafo
+# Regresa: Nada
 def crear_sector(grafo):
+    # Se crea un grafo auxiliar para guardar las distancias desde cada fuente a todos los demas nodos
     grafo_distancias = {}
+
+    # Se itera sobre los nodos del grafo
     for nodo, detalles in grafo.items():
-        if detalles["fuente"] == True:
+        # Si el nodo es una fuente se agrega al grafo auxiliar
+        if detalles["fuente"]:
             grafo_distancias[nodo] = []
             detalles["sector"] = nodo
 
+    # Se calculan las distancias desde el nodo fuente a todos los demas nodos
     grafo_extra = {}
     for nodo, detalles in grafo.items():
-        if detalles["fuente"] == True:
+        if detalles["fuente"]:
             grafo_extra = dijkstra(grafo, nodo)
+            # Se agrega el grafo auxiliar al grafo de las distancias obtenidas
             grafo_distancias[nodo] = grafo_extra
 
+    # Asignar el sector a cada nodo
     for nodo in grafo.keys():
         distancia = math.inf
+        # Se itera sobre los nodos del grafo auxiliar
         for nodo2 in grafo_distancias.keys():
+            # Si la distancia es menor a la distancia guardada en el diccionario se actualiza
             if distancia > grafo_distancias[nodo2][nodo]:
+                # Se actualiza la distancia
                 grafo[nodo]["sector"] = nodo2
+                # Se actualiza el diccionario
                 distancia = grafo_distancias[nodo2][nodo]
 
     # Calcular los nodos mas lejanos desde cada fuente y que esten en el mismo sector
     for fuente, distances in grafo_distancias.items():
         max_distance = float("-inf")
         farthest_node = None
+        # Se itera sobre los nodos del grafo auxiliar
         for destination, distance in distances.items():
+            # Si la distancia es mayor a la distancia guardada en el diccionario se actualiza
             if (
                 distance > max_distance
                 and grafo[fuente]["sector"] == grafo[destination]["sector"]
             ):
                 max_distance = distance
                 farthest_node = destination
+        # Se marca el nodo como el mas lejano
         if farthest_node is not None:
             grafo[farthest_node]["esMasLejano"] = True
 
