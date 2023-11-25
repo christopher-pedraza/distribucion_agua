@@ -1,6 +1,7 @@
 import Graph
 import LongitudTuberias
 import FrescuraAgua
+import Sectorizacion
 
 def problema_2():
     # Escribe en un archivo de texto
@@ -8,6 +9,20 @@ def problema_2():
     LongitudTuberias.add_file(grafo_HAN, "resultados/resultado_longitud_HAN.txt")
     LongitudTuberias.add_file(grafo_NYT, "resultados/resultado_longitud_NYT.txt")
     LongitudTuberias.add_file(grafo_PES, "resultados/resultado_longitud_PES.txt")
+
+def problema_3():
+    Graph.crear_sector(grafo_FOS)
+    Sectorizacion.sectores_cerrados(grafo_FOS, "resultados/resultado_Sectorizacion_FOS.txt")
+
+    Graph.crear_sector(grafo_HAN)
+    Sectorizacion.sectores_cerrados(grafo_HAN, "resultados/resultado_Sectorizacion_HAN.txt")
+
+    Graph.crear_sector(grafo_NYT)
+    Sectorizacion.sectores_cerrados(grafo_NYT, "resultados/resultado_Sectorizacion_NYT.txt")
+
+    Graph.crear_sector(grafo_PES)
+    Sectorizacion.sectores_cerrados(grafo_PES, "resultados/resultado_Sectorizacion_PES.txt")
+
 
 def problema_4():
     # Calcula la frescura del agua basada en la distancia a la fuente para cada sector
@@ -49,5 +64,6 @@ if __name__ == "__main__":
     grafo_NYT, new_nodes_NYT = Graph.create_graph("grafos/NYT.txt")
     grafo_PES, new_nodes_PES = Graph.create_graph("grafos/PES.txt")
     problema_2()
+    problema_3()
     problema_4()
     problema_7()

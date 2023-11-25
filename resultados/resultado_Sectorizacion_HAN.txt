@@ -1,0 +1,35 @@
+---------------------------------- Sectorización -----------------------------------------------
+Nodo: 2 sector al que pertenece: 1
+Nodo: 3 sector al que pertenece: 1
+Nodo: 4 sector al que pertenece: 1
+Nodo: 5 sector al que pertenece: 1
+Nodo: 6 sector al que pertenece: 1
+Nodo: 7 sector al que pertenece: 1
+Nodo: 8 sector al que pertenece: 13
+Nodo: 9 sector al que pertenece: 13
+Nodo: 10 sector al que pertenece: 13
+Nodo: 11 sector al que pertenece: 13
+Nodo: 12 sector al que pertenece: 13
+Nodo: 13 sector al que pertenece: 13
+Nodo: 14 sector al que pertenece: 13
+Nodo: 15 sector al que pertenece: 1
+Nodo: 16 sector al que pertenece: 1
+Nodo: 17 sector al que pertenece: 1
+Nodo: 18 sector al que pertenece: 1
+Nodo: 19 sector al que pertenece: 1
+Nodo: 20 sector al que pertenece: 1
+Nodo: 21 sector al que pertenece: 1
+Nodo: 22 sector al que pertenece: 1
+Nodo: 23 sector al que pertenece: 1
+Nodo: 24 sector al que pertenece: 1
+Nodo: 25 sector al que pertenece: 1
+Nodo: 26 sector al que pertenece: 1
+Nodo: 27 sector al que pertenece: 1
+Nodo: 28 sector al que pertenece: 1
+Nodo: 29 sector al que pertenece: 1
+Nodo: 30 sector al que pertenece: 1
+Nodo: 31 sector al que pertenece: 1
+Nodo: 32 sector al que pertenece: 1
+Nodo: 1 sector al que pertenece: 1
+---------------------------------- Tuberias Cerradas -----------------------------------------------
+{(14, 15), (7, 8)}
