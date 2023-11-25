@@ -81,6 +81,7 @@ def add_nodes(graph, new_nodes):
             "vecinos": [],
             "sector": None,
             "oficina": False,
+            "esMasLejano": False,
         }
         graph[closest_node[1]]["vecinos"].append(
             {

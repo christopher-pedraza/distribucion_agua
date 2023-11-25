@@ -33,10 +33,6 @@ def problema_3():
     tuberias_cerradas_PES = Sectorizacion.sectores_cerrados(
         grafo_PES, "resultados/resultado_Sectorizacion_PES.txt"
     )
-    Graph.display_graph(grafo_FOS, tuberias_cerradas_FOS)
-    Graph.display_graph(grafo_HAN, tuberias_cerradas_HAN)
-    Graph.display_graph(grafo_NYT, tuberias_cerradas_NYT)
-    Graph.display_graph(grafo_PES, tuberias_cerradas_PES)
 
 
 def problema_4():
@@ -73,11 +69,30 @@ def problema_7():
 
 
 def problema_5():
-    grafos = [grafo_FOS, grafo_HAN, grafo_NYT, grafo_PES]
+    grafos = [
+        (grafo_FOS, "FOS"),
+        (grafo_HAN, "HAN"),
+        (grafo_NYT, "NYT"),
+        (grafo_PES, "PES"),
+    ]
+
     for grafo in grafos:
-        for nodo in grafo:
-            if grafo[nodo]["fuente"]:
-                print(MaxFlow.max_flow(grafo, nodo))
+        data = []
+        for nodo in grafo[0]:
+            if grafo[0][nodo]["esMasLejano"]:
+                resultado = MaxFlow.max_flow(grafo[0], nodo)
+                for r in resultado:
+                    data.append(
+                        {
+                            "sector": grafo[0][nodo]["sector"],
+                            "origen": r,
+                            "destino": nodo,
+                            "flujo": resultado[r][0],
+                            "path": resultado[r][1],
+                        }
+                    )
+
+        MaxFlow.save_to_file(data, grafo[1], grafo[0])
 
 
 if __name__ == "__main__":
