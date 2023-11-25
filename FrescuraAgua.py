@@ -4,7 +4,7 @@
 
 # Salidas: Por cada sector, su fuente, nodo mas lejano y la longitud de esa distancia.
 
-# Librerías Ncesarias
+# Librerías Necesarias
 import math
 import heapq
 import Graph
