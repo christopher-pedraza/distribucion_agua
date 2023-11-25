@@ -163,18 +163,24 @@ def crear_sector(grafo):
 
 
 def display_graph(graph, tuberias_cerradas=[]):
+    # Coordenadas de los nodos
     x = {}
     y = {}
+    # Coordenadas de las fuentes
     x_fuente = []
     y_fuente = []
+    # Etiquetas de los nodos y fuentes
     labels = {}
     labels_fuente = []
 
+    # Separar las coordenadas de los nodos por sector
     for node_id, values in graph.items():
+        # Si el nodo es una fuente se agrega a la lista de fuentes
         if values["fuente"]:
             x_fuente.append(values["x"])
             y_fuente.append(values["y"])
             labels_fuente.append(node_id)
+        # De lo contrario se agrega a la lista de nodos
         else:
             temp = x.get(values["sector"], [])
             temp.append(values["x"])
@@ -190,8 +196,11 @@ def display_graph(graph, tuberias_cerradas=[]):
 
     # Desplegar las conexiones entre nodos
     for node_id, values in graph.items():
+        # Recorrer los vecinos del nodo
         for neighbor in values["vecinos"]:
             neighbor_id = neighbor["id"]
+            # Para solo hacer la conexión una vez
+            # Se checa tambien que la tuberia no este cerrada
             if (
                 node_id < neighbor_id
                 and (node_id, neighbor_id) not in tuberias_cerradas
@@ -199,6 +208,7 @@ def display_graph(graph, tuberias_cerradas=[]):
                 x_values = [values["x"], graph[neighbor_id]["x"]]
                 y_values = [values["y"], graph[neighbor_id]["y"]]
                 ax.plot(x_values, y_values, color="black", linewidth=0.5)
+            # Para las tuberias cerradas
             elif node_id < neighbor_id:
                 x_values = [values["x"], graph[neighbor_id]["x"]]
                 y_values = [values["y"], graph[neighbor_id]["y"]]
