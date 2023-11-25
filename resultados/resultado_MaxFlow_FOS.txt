@@ -1,0 +1,38 @@
+Sector: 37
+Origen: 37 | Destino: 3 | Flujo M�ximo: 72.8
+	Tuber�a: 1->37	|	Capacidad: 72.8/229.2
+	Tuber�a: 1->17	|	Capacidad: 16.0/40.8
+	Tuber�a: 2->17	|	Capacidad: 16.0/16.0
+	Tuber�a: 2->3	|	Capacidad: 16.0/16.0
+	Tuber�a: 1->31	|	Capacidad: 56.8/204.6
+	Tuber�a: 10->31	|	Capacidad: 56.8/184.0
+	Tuber�a: 10->11	|	Capacidad: 56.8/147.2
+	Tuber�a: 3->11	|	Capacidad: 40.8/40.8
+	Tuber�a: 11->19	|	Capacidad: 16.0/90.0
+	Tuber�a: 12->19	|	Capacidad: 16.0/73.6
+	Tuber�a: 4->12	|	Capacidad: 16.0/40.8
+	Tuber�a: 3->4	|	Capacidad: 16.0/16.0
+
+Sector: 7
+Origen: 7 | Destino: 12 | Flujo M�ximo: 58.0
+	Tuber�a: 6->7	|	Capacidad: 16.0/16.0
+	Tuber�a: 5->6	|	Capacidad: 16.0/16.0
+	Tuber�a: 4->5	|	Capacidad: 16.0/26.0
+	Tuber�a: 4->12	|	Capacidad: 16.0/40.8
+	Tuber�a: 7->22	|	Capacidad: 26.0/26.0
+	Tuber�a: 15->22	|	Capacidad: 26.0/61.4
+	Tuber�a: 15->20	|	Capacidad: 16.0/51.4
+	Tuber�a: 19->20	|	Capacidad: 16.0/16.0
+	Tuber�a: 12->19	|	Capacidad: 26.0/73.6
+	Tuber�a: 21->22	|	Capacidad: 16.0/40.8
+	Tuber�a: 14->21	|	Capacidad: 16.0/32.6
+	Tuber�a: 13->14	|	Capacidad: 16.0/16.0
+	Tuber�a: 12->13	|	Capacidad: 16.0/40.8
+	Tuber�a: 7->24	|	Capacidad: 16.0/16.0
+	Tuber�a: 23->24	|	Capacidad: 16.0/32.6
+	Tuber�a: 22->23	|	Capacidad: 16.0/16.0
+	Tuber�a: 15->26	|	Capacidad: 10.0/90.0
+	Tuber�a: 11->26	|	Capacidad: 10.0/102.2
+	Tuber�a: 11->19	|	Capacidad: 10.0/90.0
+
+* Las aristas 
