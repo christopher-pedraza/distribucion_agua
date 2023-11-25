@@ -95,7 +95,8 @@ def add_nodes(graph, new_nodes):
             }
         )
 
-def dijsktra(fuente, grafo):
+
+def dijkstra(grafo, fuente):
     # Implementación del algoritmo de Dijkstra para encontrar la distancia más corta entre un nodo y todos los demás nodos en un grafo.
     distancias = {nodo: math.inf for nodo in grafo}
     distancias[fuente] = 0
@@ -125,26 +126,24 @@ def dijsktra(fuente, grafo):
     return distancias
 
 
-
 def crear_sector(grafo):
     grafo_distancias = {}
     for nodo, detalles in grafo.items():
-        if detalles['fuente'] == True:
+        if detalles["fuente"] == True:
             grafo_distancias[nodo] = []
-            detalles['sector'] = nodo
+            detalles["sector"] = nodo
 
-    
     grafo_extra = {}
     for nodo, detalles in grafo.items():
-        if detalles['fuente'] == True:
-            grafo_extra = dijsktra(nodo, grafo)
+        if detalles["fuente"] == True:
+            grafo_extra = dijkstra(grafo, nodo)
             grafo_distancias[nodo] = grafo_extra
 
     for nodo in grafo.keys():
         distancia = math.inf
         for nodo2 in grafo_distancias.keys():
             if distancia > grafo_distancias[nodo2][nodo]:
-                grafo[nodo]['sector'] = nodo2
+                grafo[nodo]["sector"] = nodo2
                 distancia = grafo_distancias[nodo2][nodo]
 
 
