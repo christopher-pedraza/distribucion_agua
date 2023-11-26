@@ -51,29 +51,45 @@ def problema_3(carpeta):
 
 
 def problema_4(carpeta):
-    grafo_FOS, new_nodes_FOS = Graph.create_graph("grafos/FOS.txt")
     Graph.crear_sector(grafo_FOS)
-    FrescuraAgua.max_delay_per_sector(
-        grafo_FOS, f"resultados/{carpeta}/resultado_FrescuraAgua_FOS.txt"
+    resultado_FOS = FrescuraAgua.max_delay_per_sector(grafo_FOS)
+    FrescuraAgua.guardar_resultados_en_archivo(
+        f"resultados/{carpeta}/resultado_FrescuraAgua_FOS.txt", resultado_FOS
     )
-
-    grafo_HAN, new_nodes_HAN = Graph.create_graph("grafos/HAN.txt")
     Graph.crear_sector(grafo_HAN)
-    FrescuraAgua.max_delay_per_sector(
-        grafo_HAN, f"resultados/{carpeta}/resultado_FrescuraAgua_HAN.txt"
+    resultado_HAN = FrescuraAgua.max_delay_per_sector(grafo_HAN)
+    FrescuraAgua.guardar_resultados_en_archivo(
+        f"resultados/{carpeta}/resultado_FrescuraAgua_HAN.txt", resultado_HAN
     )
-
-    grafo_NYT, new_nodes_NYT = Graph.create_graph("grafos/NYT.txt")
     Graph.crear_sector(grafo_NYT)
-    FrescuraAgua.max_delay_per_sector(
-        grafo_NYT, f"resultados/{carpeta}/resultado_FrescuraAgua_NYT.txt"
+    resultado_NYT = FrescuraAgua.max_delay_per_sector(grafo_NYT)
+    FrescuraAgua.guardar_resultados_en_archivo(
+        f"resultados/{carpeta}/resultado_FrescuraAgua_NYT.txt", resultado_NYT
+    )
+    Graph.crear_sector(grafo_PES)
+    resultado_PES = FrescuraAgua.max_delay_per_sector(grafo_PES)
+    FrescuraAgua.guardar_resultados_en_archivo(
+        f"resultados/{carpeta}/resultado_FrescuraAgua_PES.txt", resultado_PES
     )
 
-    grafo_PES, new_nodes_PES = Graph.create_graph("grafos/PES.txt")
-    Graph.crear_sector(grafo_PES)
-    FrescuraAgua.max_delay_per_sector(
-        grafo_PES, f"resultados/{carpeta}/resultado_FrescuraAgua_PES.txt"
-    )
+
+def problema_7():
+    Graph.save_graph_to_file(grafo_PES, "PES")
+
+
+def problema_7():
+    Graph.save_graph_to_file(grafo_PES, "PES")
+
+
+def problema_7():
+    Graph.add_nodes(grafo_FOS, new_nodes_FOS)
+    Graph.add_nodes(grafo_HAN, new_nodes_HAN)
+    Graph.add_nodes(grafo_NYT, new_nodes_NYT)
+    Graph.add_nodes(grafo_PES, new_nodes_PES)
+    Graph.save_graph_to_file(grafo_FOS, "FOS")
+    Graph.save_graph_to_file(grafo_HAN, "HAN")
+    Graph.save_graph_to_file(grafo_NYT, "NYT")
+    Graph.save_graph_to_file(grafo_PES, "PES")
 
 
 def problema_7():
@@ -120,11 +136,11 @@ def problema_5(carpeta):
         MaxFlow.save_to_file(data, grafo[1], grafo[0], carpeta)
 
 
-def desplegar_grafos(tuberias_cerradas, carpeta):
-    Graph.display_graph_detailed(grafo_FOS, tuberias_cerradas['FOS'], "Grafo con detalles del FOS", carpeta)
-    Graph.display_graph_detailed(grafo_HAN, tuberias_cerradas['HAN'], "Grafo con detalles del HAN", carpeta)
-    Graph.display_graph_detailed(grafo_NYT, tuberias_cerradas['NYT'], "Grafo con detalles del NYT", carpeta)
-    Graph.display_graph_detailed(grafo_PES, tuberias_cerradas['PES'], "Grafo con detalles del PES", carpeta)
+def desplegar_grafos(tuberias_cerradas):
+    Graph.display_graph(grafo_FOS, tuberias_cerradas["FOS"])
+    Graph.display_graph(grafo_HAN, tuberias_cerradas["HAN"])
+    Graph.display_graph(grafo_NYT, tuberias_cerradas["NYT"])
+    Graph.display_graph(grafo_PES, tuberias_cerradas["PES"])
 
 
 if __name__ == "__main__":

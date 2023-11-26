@@ -1,5 +1,6 @@
 Para el sector 7:
 Fuente: 7
-Nodo más lejano: 85
+Nodo mï¿½s lejano: 85
 Distancia: 3434.5959907098663
+
 

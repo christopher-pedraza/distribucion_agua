@@ -1,5 +1,6 @@
 Para el sector 37:
 Fuente: 37
-Nodo más lejano: 3
+Nodo mï¿½s lejano: 3
 Distancia: 3311.202408370711
+
 
