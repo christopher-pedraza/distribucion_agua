@@ -3,6 +3,7 @@ import LongitudTuberias
 import FrescuraAgua
 import Sectorizacion
 import MaxFlow
+import TSP
 
 
 
@@ -55,8 +56,12 @@ def problema_4():
     resultado_PES = FrescuraAgua.max_delay_per_sector(grafo_PES)
     FrescuraAgua.guardar_resultados_en_archivo("resultados/resultado_FrescuraAgua_PES.txt", resultado_PES)
 
-
-
+def problema_TSP():
+    # Escribe en un archivo de texto
+    TSP.add_file("grafos/FOS.txt", "resultados/resultado_TSP_FOS.txt")
+    TSP.add_file("grafos/HAN.txt", "resultados/resultado_TSP_HAN.txt")
+    TSP.add_file("grafos/NYT.txt", "resultados/resultado_TSP_NYT.txt")
+    TSP.add_file("grafos/PES.txt", "resultados/resultado_TSP_PES.txt")
 
 def problema_7():
     Graph.add_nodes(grafo_FOS, new_nodes_FOS)
@@ -88,6 +93,8 @@ if __name__ == "__main__":
     problema_3()
     problema_4()
     problema_5()
+    problema_TSP()
     problema_7()
+    
 
 
