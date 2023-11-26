@@ -1,6 +1,0 @@
-Para el sector 1:
-Fuente: 1
-Nodo m�s lejano: 31
-Distancia: 7017.435786760005
-
-

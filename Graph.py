@@ -210,7 +210,7 @@ def crear_sector(grafo):
             grafo[farthest_node]["esMasLejano"] = True
 
 
-def display_graph(graph, tuberias_cerradas=[], titulo=""):
+def display_graph(graph, tuberias_cerradas, titulo):
     # Coordenadas de los nodos
     x = {}
     y = {}
@@ -297,6 +297,7 @@ def display_graph(graph, tuberias_cerradas=[], titulo=""):
 
     plt.show()
 
+
 def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
     # Coordenadas de los nodos
     x = {}
@@ -328,7 +329,7 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
             labels[values["sector"]] = temp
 
     fig, ax = plt.subplots()
-    fig.set_size_inches(12,12)
+    fig.set_size_inches(12, 12)
 
     # Desplegar las conexiones entre nodos
     for node_id, values in graph.items():
@@ -360,15 +361,28 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
     cerradas_line = mlines.Line2D(
         [], [], color="gray", linewidth=0.5, linestyle=":", label="Tuberías Cerradas"
     )
-    fuentes_de_Agua = mlines.Line2D([], [], color="blue", marker="^", label="Fuente", linestyle='None')
+    fuentes_de_Agua = mlines.Line2D(
+        [], [], color="blue", marker="^", label="Fuente", linestyle="None"
+    )
 
-    puntos_lejanos = mlines.Line2D([], [], color="green", marker="x", label="Más Lejano" ,linestyle='None')
+    puntos_lejanos = mlines.Line2D(
+        [], [], color="green", marker="x", label="Más Lejano", linestyle="None"
+    )
 
-    oficina = mlines.Line2D([], [], color="yellow", marker="*", label="Más Lejano" ,linestyle='None')
+    oficina = mlines.Line2D(
+        [], [], color="yellow", marker="*", label="Más Lejano", linestyle="None"
+    )
 
     # Agregar las líneas personalizadas a la leyenda sin graficarlas directamente
     ax.legend(
-        handles=[fuentes_de_Agua, tuberias_line, cerradas_line, puntos_lejanos, oficina], loc="upper right"
+        handles=[
+            fuentes_de_Agua,
+            tuberias_line,
+            cerradas_line,
+            puntos_lejanos,
+            oficina,
+        ],
+        loc="upper right",
     )
 
     plt.title(titulo)
@@ -380,18 +394,20 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
         ax.scatter(values, y[sector])
         for i, txt in enumerate(labels[sector]):
             ax.annotate(txt, (values[i], y[sector][i]))
-    
+
     for nodo, detalles in graph.items():
-        if graph[nodo]['esMasLejano']:
-            ax.plot(graph[nodo]['x'], graph[nodo]['y'], marker="x", color="lime")
-        if graph[nodo]['oficina']:
-            ax.plot(graph[nodo]['x'], graph[nodo]['y'], marker="*", color="yellow")
-        for vecino in detalles['vecinos']:
-            mitad_x = (graph[nodo]['x'] + graph[vecino['id']]['x']) / 2
-            mitad_y = (graph[nodo]['y'] + graph[vecino['id']]['y']) / 2
-            ax.annotate(f"{round(vecino['capacidad'], 2)}\n{round(vecino['longitud'], 2)}", (mitad_x, mitad_y), fontsize=7)
-    
-    
+        if graph[nodo]["esMasLejano"]:
+            ax.plot(graph[nodo]["x"], graph[nodo]["y"], marker="x", color="lime")
+        if graph[nodo]["oficina"]:
+            ax.plot(graph[nodo]["x"], graph[nodo]["y"], marker="*", color="yellow")
+        for vecino in detalles["vecinos"]:
+            mitad_x = (graph[nodo]["x"] + graph[vecino["id"]]["x"]) / 2
+            mitad_y = (graph[nodo]["y"] + graph[vecino["id"]]["y"]) / 2
+            ax.annotate(
+                f"{round(vecino['capacidad'], 2)}\n{round(vecino['longitud'], 2)}",
+                (mitad_x, mitad_y),
+                fontsize=7,
+            )
 
     # Agregar etiquetas a las fuentes
     for i, txt in enumerate(labels_fuente):

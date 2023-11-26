@@ -1,2 +1,0 @@
-Nodo nuevo: 90	|	Conectado a: 3	|	Distancia: 363.6825156644945
-Nodo nuevo: 91	|	Conectado a: 25	|	Distancia: 645.7445719476997
