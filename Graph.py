@@ -297,7 +297,7 @@ def display_graph(graph, tuberias_cerradas=[], titulo=""):
 
     plt.show()
 
-def display_graph_detailed(graph, tuberias_cerradas=[], titulo=""):
+def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
     # Coordenadas de los nodos
     x = {}
     y = {}
@@ -398,7 +398,7 @@ def display_graph_detailed(graph, tuberias_cerradas=[], titulo=""):
         ax.annotate(txt, (x_fuente[i], y_fuente[i]))
 
     plt.gca().set_aspect("equal")
-    plt.savefig(f"graficas/{titulo}.png", dpi=300)
+    plt.savefig(f"graficas/{carpeta}/{titulo}.png", dpi=300)
     plt.show()
 
 
