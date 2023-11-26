@@ -1,10 +1,10 @@
 Para el sector 1:
 Fuente: 1
-Nodo m·s lejano: 65
-Distancia: 4404.1095718946335
+Nodo m√°s lejano: 65
+Distancia: 6609.484572355063
 
 Para el sector 7:
 Fuente: 7
-Nodo m·s lejano: 1
-Distancia: 4529.341863298352
+Nodo m√°s lejano: 3
+Distancia: 5149.852036709404
 

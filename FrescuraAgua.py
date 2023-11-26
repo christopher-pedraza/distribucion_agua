@@ -4,50 +4,42 @@
 
 # Salidas: Por cada sector, su fuente, nodo mas lejano y la longitud de esa distancia.
 
-from Graph import dijkstra
 
+import math
 
-def max_delay_per_sector(graph):
+# Lista para almacenar las fuentes
+
+def max_delay_per_sector(graph, nombre_archivo):
+    fuentes = []
     # Funcion para calcular el nodo mas lejano de cada sector y su distancia a la fuente usando dijkstra
     sectors = {}
     for node_id, node_info in graph.items():
         if node_info["fuente"]:  # Excluir nodos fuentes
-            continue
+            fuentes.append(node_id)
+        
+    distancia = 0
+    nodo_mas_lejano = 0
+    for index in range(len(fuentes)):
+        for node_id, node_info in graph.items():
+            if node_info["fuente"]:  # Excluir nodos fuentes
+                continue
+            result = math.sqrt(
+                (graph[node_id]["x"] - graph[fuentes[index]]["x"]) ** 2
+                + (graph[node_id]["y"] - graph[fuentes[index]]["y"]) ** 2
+            )
 
-        sector = node_info["sector"]
-        if sector not in sectors:
-            # Inicializar el sector con un nodo cualquiera
-            sectors[sector] = {
-                "fuente": None,
-                "nodo_mas_lejano": None,
-                "distancia": float("-inf"),
-            }
+            if result > distancia:
+                distancia = result
+                nodo_mas_lejano = node_id
+        
 
-        # Calcular las distancias de todos los nodos al nodo actual
-        distances = dijkstra(graph, sector)  # Usar el número de sector como fuente
+        # Guardar los resultados en un archivo de texto
+        with open(nombre_archivo, "a") as file:
+            file.write(f"Para el sector {fuentes[index]}:\n")
+            file.write(f"Fuente: {fuentes[index]}\n")
+            file.write(f"Nodo más lejano: {nodo_mas_lejano}\n")
+            file.write(f"Distancia: {distancia}\n\n")
 
-        max_distance = max(
-            [
-                distances[node]
-                for node, info in graph.items()
-                if not info["fuente"] and info["sector"] == sector
-            ]
-        )
-
-        # Si la distancia es mayor a la distancia actual
-        if max_distance > sectors[sector]["distancia"]:
-            sectors[sector]["fuente"] = sector
-            sectors[sector]["nodo_mas_lejano"] = max(distances, key=distances.get)
-            sectors[sector]["distancia"] = max_distance
-
-    return sectors
-
-
-def guardar_resultados_en_archivo(nombre_archivo, resultados):
-    # Funcion para guardar los resultados en un archivo de texto
-    with open(nombre_archivo, "w") as file:
-        for sector, data in resultados.items():
-            print(f"Para el sector {sector}:", file=file)
-            print(f"Fuente: {data['fuente']}", file=file)
-            print(f"Nodo más lejano: {data['nodo_mas_lejano']}", file=file)
-            print(f"Distancia: {data['distancia']}\n", file=file)
+        # Reiniciar variables
+        distancia = 0
+        nodo_mas_lejano = 0

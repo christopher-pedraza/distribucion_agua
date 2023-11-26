@@ -1,34 +1,34 @@
 Sector: 1
-Origen: 1 | Destino: 10 | Flujo Máximo: 151.0
-	Tubería: 1->2	|	Capacidad: 101.0/101.0
-	Tubería: 2->62	|	Capacidad: 101.0/103.0
-	Tubería: 58->62	|	Capacidad: 101.0/251.0
-	Tubería: 57->58	|	Capacidad: 101.0/251.0
-	Tubería: 44->57	|	Capacidad: 101.0/303.0
-	Tubería: 42->44	|	Capacidad: 101.0/353.0
-	Tubería: 11->42	|	Capacidad: 101.0/253.0
-	Tubería: 10->11	|	Capacidad: 151.0/151.0
-	Tubería: 1->3	|	Capacidad: 50.0/126.0
-	Tubería: 3->5	|	Capacidad: 50.0/101.0
-	Tubería: 5->86	|	Capacidad: 50.0/103.0
-	Tubería: 45->86	|	Capacidad: 50.0/103.0
-	Tubería: 45->46	|	Capacidad: 50.0/101.0
-	Tubería: 32->46	|	Capacidad: 50.0/103.0
-	Tubería: 31->32	|	Capacidad: 50.0/103.0
-	Tubería: 11->31	|	Capacidad: 50.0/103.0
+Origen: 1 | Destino: 10 | Flujo MÃ¡ximo: 151.0
+	TuberÃ­a: 1->2	|	Capacidad: 101.0/101.0
+	TuberÃ­a: 2->62	|	Capacidad: 101.0/103.0
+	TuberÃ­a: 58->62	|	Capacidad: 101.0/251.0
+	TuberÃ­a: 57->58	|	Capacidad: 101.0/251.0
+	TuberÃ­a: 44->57	|	Capacidad: 101.0/303.0
+	TuberÃ­a: 42->44	|	Capacidad: 101.0/353.0
+	TuberÃ­a: 11->42	|	Capacidad: 101.0/253.0
+	TuberÃ­a: 10->11	|	Capacidad: 151.0/151.0
+	TuberÃ­a: 1->3	|	Capacidad: 50.0/126.0
+	TuberÃ­a: 3->5	|	Capacidad: 50.0/101.0
+	TuberÃ­a: 5->86	|	Capacidad: 50.0/103.0
+	TuberÃ­a: 45->86	|	Capacidad: 50.0/103.0
+	TuberÃ­a: 45->46	|	Capacidad: 50.0/101.0
+	TuberÃ­a: 32->46	|	Capacidad: 50.0/103.0
+	TuberÃ­a: 31->32	|	Capacidad: 50.0/103.0
+	TuberÃ­a: 11->31	|	Capacidad: 50.0/103.0
 
 Sector: 7
-Origen: 7 | Destino: 21 | Flujo Máximo: 101.0
-	Tubería: 6->7	|	Capacidad: 101.0/101.0
-	Tubería: 6->8	|	Capacidad: 101.0/101.0
-	Tubería: 8->29	|	Capacidad: 101.0/201.0
-	Tubería: 29->35	|	Capacidad: 101.0/101.0
-	Tubería: 25->35	|	Capacidad: 101.0/101.0
-	Tubería: 24->25	|	Capacidad: 101.0/203.0
-	Tubería: 17->24	|	Capacidad: 101.0/303.0
-	Tubería: 13->17	|	Capacidad: 101.0/201.0
-	Tubería: 13->18	|	Capacidad: 101.0/203.0
-	Tubería: 18->20	|	Capacidad: 101.0/101.0
-	Tubería: 20->21	|	Capacidad: 101.0/103.0
+Origen: 7 | Destino: 21 | Flujo MÃ¡ximo: 101.0
+	TuberÃ­a: 6->7	|	Capacidad: 101.0/101.0
+	TuberÃ­a: 6->8	|	Capacidad: 101.0/101.0
+	TuberÃ­a: 8->29	|	Capacidad: 101.0/201.0
+	TuberÃ­a: 29->35	|	Capacidad: 101.0/101.0
+	TuberÃ­a: 25->35	|	Capacidad: 101.0/101.0
+	TuberÃ­a: 24->25	|	Capacidad: 101.0/203.0
+	TuberÃ­a: 17->24	|	Capacidad: 101.0/303.0
+	TuberÃ­a: 13->17	|	Capacidad: 101.0/201.0
+	TuberÃ­a: 13->18	|	Capacidad: 101.0/203.0
+	TuberÃ­a: 18->20	|	Capacidad: 101.0/101.0
+	TuberÃ­a: 20->21	|	Capacidad: 101.0/103.0
 
-*Las aristas que no aparecen representan tuberías que no se usaron, y por ende, su capacidad seguiría siendo la misma
+*Las aristas que no aparecen representan tuberÃ­as que no se usaron, y por ende, su capacidad seguirÃ­a siendo la misma
