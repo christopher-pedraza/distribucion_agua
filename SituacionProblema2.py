@@ -138,7 +138,7 @@ if __name__ == "__main__":
     tuberias_cerradas = problema_3("pre")
     problema_4("pre")
     problema_5("pre")
-    desplegar_grafos(tuberias_cerradas)
+    #desplegar_grafos(tuberias_cerradas)
 
     problema_7()
 
@@ -146,4 +146,9 @@ if __name__ == "__main__":
     tuberias_cerradas = problema_3("post")
     problema_4("post")
     problema_5("post")
-    desplegar_grafos(tuberias_cerradas)
+    #desplegar_grafos(tuberias_cerradas)
+
+    Graph.display_graph_detailed(grafo_FOS, tuberias_cerradas['FOS'], "Grafo con detalles del FOS")
+    Graph.display_graph_detailed(grafo_HAN, tuberias_cerradas['HAN'], "Grafo con detalles del HAN")
+    Graph.display_graph_detailed(grafo_NYT, tuberias_cerradas['NYT'], "Grafo con detalles del NYT")
+    Graph.display_graph_detailed(grafo_PES, tuberias_cerradas['PES'], "Grafo con detalles del PES")
