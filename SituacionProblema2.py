@@ -66,7 +66,7 @@ def problema_4(carpeta):
     grafo_PES, new_nodes_PES = Graph.create_graph("grafos/PES.txt")
     Graph.crear_sector(grafo_PES)
     FrescuraAgua.max_delay_per_sector(grafo_PES, f"resultados/{carpeta}/resultado_FrescuraAgua_PES.txt")
-    
+
 
 
 

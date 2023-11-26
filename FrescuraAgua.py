@@ -23,14 +23,14 @@ def max_delay_per_sector(graph, nombre_archivo):
         for node_id, node_info in graph.items():
             if node_info["fuente"]:  # Excluir nodos fuentes
                 continue
-            result = math.sqrt(
-                (graph[node_id]["x"] - graph[fuentes[index]]["x"]) ** 2
-                + (graph[node_id]["y"] - graph[fuentes[index]]["y"]) ** 2
-            )
-
-            if result > distancia:
-                distancia = result
-                nodo_mas_lejano = node_id
+            if node_info["sector"] == graph[fuentes[index]]["sector"]:  # Incluir  nodos del mismo sector
+                result = math.sqrt(
+                    (graph[node_id]["x"] - graph[fuentes[index]]["x"]) ** 2
+                    + (graph[node_id]["y"] - graph[fuentes[index]]["y"]) ** 2
+                )
+                if result > distancia:
+                    distancia = result
+                    nodo_mas_lejano = node_id
         
 
         # Guardar los resultados en un archivo de texto
