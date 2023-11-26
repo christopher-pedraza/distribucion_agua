@@ -53,33 +53,40 @@ def problema_3(carpeta):
 def problema_4(carpeta):
     grafo_FOS, new_nodes_FOS = Graph.create_graph("grafos/FOS.txt")
     Graph.crear_sector(grafo_FOS)
-    FrescuraAgua.max_delay_per_sector(grafo_FOS, f"resultados/{carpeta}/resultado_FrescuraAgua_FOS.txt")
+    FrescuraAgua.max_delay_per_sector(
+        grafo_FOS, f"resultados/{carpeta}/resultado_FrescuraAgua_FOS.txt"
+    )
 
     grafo_HAN, new_nodes_HAN = Graph.create_graph("grafos/HAN.txt")
     Graph.crear_sector(grafo_HAN)
-    FrescuraAgua.max_delay_per_sector(grafo_HAN, f"resultados/{carpeta}/resultado_FrescuraAgua_HAN.txt")
+    FrescuraAgua.max_delay_per_sector(
+        grafo_HAN, f"resultados/{carpeta}/resultado_FrescuraAgua_HAN.txt"
+    )
 
     grafo_NYT, new_nodes_NYT = Graph.create_graph("grafos/NYT.txt")
     Graph.crear_sector(grafo_NYT)
-    FrescuraAgua.max_delay_per_sector(grafo_NYT, f"resultados/{carpeta}/resultado_FrescuraAgua_NYT.txt")
+    FrescuraAgua.max_delay_per_sector(
+        grafo_NYT, f"resultados/{carpeta}/resultado_FrescuraAgua_NYT.txt"
+    )
 
     grafo_PES, new_nodes_PES = Graph.create_graph("grafos/PES.txt")
     Graph.crear_sector(grafo_PES)
-    FrescuraAgua.max_delay_per_sector(grafo_PES, f"resultados/{carpeta}/resultado_FrescuraAgua_PES.txt")
-
-
-
+    FrescuraAgua.max_delay_per_sector(
+        grafo_PES, f"resultados/{carpeta}/resultado_FrescuraAgua_PES.txt"
+    )
 
 
 def problema_7():
-    Graph.add_nodes(grafo_FOS, new_nodes_FOS)
-    Graph.add_nodes(grafo_HAN, new_nodes_HAN)
-    Graph.add_nodes(grafo_NYT, new_nodes_NYT)
-    Graph.add_nodes(grafo_PES, new_nodes_PES)
-    Graph.save_graph_to_file(grafo_FOS, "FOS")
-    Graph.save_graph_to_file(grafo_HAN, "HAN")
-    Graph.save_graph_to_file(grafo_NYT, "NYT")
-    Graph.save_graph_to_file(grafo_PES, "PES")
+    datos = [
+        (grafo_FOS, new_nodes_FOS, "FOS"),
+        (grafo_HAN, new_nodes_HAN, "HAN"),
+        (grafo_NYT, new_nodes_NYT, "NYT"),
+        (grafo_PES, new_nodes_PES, "PES"),
+    ]
+
+    for dato in datos:
+        Graph.add_nodes(dato[0], dato[1], dato[2])
+        Graph.save_graph_to_file(dato[0], dato[2])
 
 
 def problema_5(carpeta):
