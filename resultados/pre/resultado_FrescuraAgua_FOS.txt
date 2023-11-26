@@ -1,5 +1,10 @@
+Para el sector 7:
+Fuente: 7
+Nodo más lejano: 12
+Distancia: 4931.08572541891
+
 Para el sector 37:
 Fuente: 37
 Nodo más lejano: 3
-Distancia: 3311.202408370711
+Distancia: 4131.720362583634
 
