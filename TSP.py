@@ -15,7 +15,7 @@ graph[id] = {
 
 test_case={}
 # obten el grafo
-graph=Graph.create_graph("grafos/FOS.txt")[0]
+graph=Graph.create_graph("grafos/HAN.txt")[0]
 
 
 
@@ -26,8 +26,8 @@ for id_,dictionary in graph.items():
         test_case[id_][vecino["id"]]=vecino["longitud"]
 
 print("---1")
-print("GRAPH:",graph)
-print("TC",test_case)
+#print("GRAPH:",graph)
+#print("TC",test_case)
 #print("TEST CASE:", test_case)
 
 '''
@@ -126,7 +126,7 @@ def S_builder(temp):
     for s in S:
         total_cost+=s[1]
 
-    return [S,total_cost]
+    return [S[1:],total_cost]
         
 
 def monte_carlo(temp,temp_cut,temp_min,best_so_far):
@@ -141,11 +141,14 @@ best_so_far=S_builder(7)
 
 
 
-print("very low budget",monte_carlo(7,1,5,best_so_far)[1])
-print("low budget",monte_carlo(7,1,2,best_so_far)[1])
-print("medium budget",monte_carlo(7,0.5,1,best_so_far)[1])
-print("great budget: ",monte_carlo(7,0.2,0.5,best_so_far)[1])
-print("ultra budget: ",monte_carlo(7,0.01,0.5,best_so_far)[1])
-print("meta budget",monte_carlo(7,0.002,0.02,best_so_far)[1])
-print("budget royale",monte_carlo(7,0.001,0.01,best_so_far)[1])
+print("very low budget",monte_carlo(7,1,5,best_so_far))
+
+print("\n")
+#print("low budget",monte_carlo(7,1,2,best_so_far))
+#print("medium budget",monte_carlo(7,0.5,1,best_so_far))
+print("great budget: ",monte_carlo(7,0.2,0.5,best_so_far))
+
+#print("ultra budget: ",monte_carlo(7,0.01,0.5,best_so_far))
+#print("meta budget",monte_carlo(7,0.002,0.02,best_so_far))
+#print("budget royale",monte_carlo(7,0.001,0.01,best_so_far))
 
