@@ -67,7 +67,9 @@ def create_graph(file_name):
 # Funcion para agregar nuevos nodos al grafo
 # Recibe: El grafo y los nuevos nodos
 # Regresa: Nada
-def add_nodes(graph, new_nodes):
+def add_nodes(graph, new_nodes, nombre):
+    lines = []
+
     # Se itera sobre los nuevos nodos
     for n_node in new_nodes:
         # Se busca el nodo mas cercano al nuevo nodo
@@ -111,6 +113,13 @@ def add_nodes(graph, new_nodes):
                 "longitud": closest_node[0],
             }
         )
+
+        lines.append(
+            f"Nodo nuevo: {new_index}\t|\tConectado a: {closest_node[1]}\t|\tDistancia: {closest_node[0]}"
+        )
+    with open(f"resultados/post/nuevos_nodos_{nombre}.txt", "w") as file:
+        for line in lines:
+            file.write(f"{line}\n")
 
 
 # Funcion para encontrar la distancia mas corta entre un nodo y todos los demas nodos en un grafo
@@ -290,7 +299,7 @@ def display_graph(graph, tuberias_cerradas=[], titulo=""):
 
 
 def save_graph_to_file(graph, name):
-    with open(f"resultados/{name}_nuevo.txt", "w") as file:
+    with open(f"grafos/{name}_nuevo.txt", "w") as file:
         # Contar la cantidad de nodos y aristas
         node_count = len(graph)
         edge_count = 0

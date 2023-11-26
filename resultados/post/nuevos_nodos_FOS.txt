@@ -1,0 +1,2 @@
+Nodo nuevo: 38	|	Conectado a: 17	|	Distancia: 617.1488800929641
+Nodo nuevo: 39	|	Conectado a: 5	|	Distancia: 809.1339657930565

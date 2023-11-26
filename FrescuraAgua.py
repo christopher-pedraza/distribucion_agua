@@ -9,6 +9,7 @@ import math
 
 # Lista para almacenar las fuentes
 
+
 def max_delay_per_sector(graph, nombre_archivo):
     fuentes = []
     # Funcion para calcular el nodo mas lejano de cada sector y su distancia a la fuente usando dijkstra
@@ -16,14 +17,16 @@ def max_delay_per_sector(graph, nombre_archivo):
     for node_id, node_info in graph.items():
         if node_info["fuente"]:  # Excluir nodos fuentes
             fuentes.append(node_id)
-        
+
     distancia = 0
     nodo_mas_lejano = 0
     for index in range(len(fuentes)):
         for node_id, node_info in graph.items():
             if node_info["fuente"]:  # Excluir nodos fuentes
                 continue
-            if node_info["sector"] == graph[fuentes[index]]["sector"]:  # Incluir  nodos del mismo sector
+            if (
+                node_info["sector"] == graph[fuentes[index]]["sector"]
+            ):  # Incluir  nodos del mismo sector
                 result = math.sqrt(
                     (graph[node_id]["x"] - graph[fuentes[index]]["x"]) ** 2
                     + (graph[node_id]["y"] - graph[fuentes[index]]["y"]) ** 2
@@ -31,10 +34,9 @@ def max_delay_per_sector(graph, nombre_archivo):
                 if result > distancia:
                     distancia = result
                     nodo_mas_lejano = node_id
-        
 
         # Guardar los resultados en un archivo de texto
-        with open(nombre_archivo, "a") as file:
+        with open(nombre_archivo, "w") as file:
             file.write(f"Para el sector {fuentes[index]}:\n")
             file.write(f"Fuente: {fuentes[index]}\n")
             file.write(f"Nodo más lejano: {nodo_mas_lejano}\n")
