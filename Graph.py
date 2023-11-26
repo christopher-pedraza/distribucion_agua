@@ -297,6 +297,110 @@ def display_graph(graph, tuberias_cerradas=[], titulo=""):
 
     plt.show()
 
+def display_graph_detailed(graph, tuberias_cerradas=[], titulo=""):
+    # Coordenadas de los nodos
+    x = {}
+    y = {}
+    # Coordenadas de las fuentes
+    x_fuente = []
+    y_fuente = []
+    # Etiquetas de los nodos y fuentes
+    labels = {}
+    labels_fuente = []
+
+    # Separar las coordenadas de los nodos por sector
+    for node_id, values in graph.items():
+        # Si el nodo es una fuente se agrega a la lista de fuentes
+        if values["fuente"]:
+            x_fuente.append(values["x"])
+            y_fuente.append(values["y"])
+            labels_fuente.append(node_id)
+        # De lo contrario se agrega a la lista de nodos
+        else:
+            temp = x.get(values["sector"], [])
+            temp.append(values["x"])
+            x[values["sector"]] = temp
+            temp = y.get(values["sector"], [])
+            temp.append(values["y"])
+            y[values["sector"]] = temp
+            temp = labels.get(values["sector"], [])
+            temp.append(node_id)
+            labels[values["sector"]] = temp
+
+    fig, ax = plt.subplots()
+    fig.set_size_inches(12,12)
+
+    # Desplegar las conexiones entre nodos
+    for node_id, values in graph.items():
+        # Recorrer los vecinos del nodo
+        for neighbor in values["vecinos"]:
+            neighbor_id = neighbor["id"]
+            # Para solo hacer la conexión una vez
+            # Se checa tambien que la tuberia no este cerrada
+            if (
+                node_id < neighbor_id
+                and (node_id, neighbor_id) not in tuberias_cerradas
+            ):
+                x_values = [values["x"], graph[neighbor_id]["x"]]
+                y_values = [values["y"], graph[neighbor_id]["y"]]
+                ax.plot(x_values, y_values, color="black", linewidth=0.5)
+            # Para las tuberias cerradas
+            elif node_id < neighbor_id:
+                x_values = [values["x"], graph[neighbor_id]["x"]]
+                y_values = [values["y"], graph[neighbor_id]["y"]]
+                ax.plot(x_values, y_values, color="gray", linewidth=0.5, linestyle=":")
+
+    # Desplegar las fuentes
+    ax.scatter(x_fuente, y_fuente, color="blue", marker="^")
+
+    # Crear líneas personalizadas para agregar a la leyenda
+    tuberias_line = mlines.Line2D(
+        [], [], color="black", linewidth=0.5, label="Tuberías"
+    )
+    cerradas_line = mlines.Line2D(
+        [], [], color="gray", linewidth=0.5, linestyle=":", label="Tuberías Cerradas"
+    )
+    fuentes_de_Agua = mlines.Line2D([], [], color="blue", marker="^", label="Fuente", linestyle='None')
+
+    puntos_lejanos = mlines.Line2D([], [], color="green", marker="x", label="Más Lejano" ,linestyle='None')
+
+    oficina = mlines.Line2D([], [], color="yellow", marker="*", label="Más Lejano" ,linestyle='None')
+
+    # Agregar las líneas personalizadas a la leyenda sin graficarlas directamente
+    ax.legend(
+        handles=[fuentes_de_Agua, tuberias_line, cerradas_line, puntos_lejanos, oficina], loc="upper right"
+    )
+
+    plt.title(titulo)
+    plt.xlabel("Eje X")
+    plt.ylabel("Eje Y")
+
+    # Colorear los nodos por sector y agregar etiquetas
+    for sector, values in x.items():
+        ax.scatter(values, y[sector])
+        for i, txt in enumerate(labels[sector]):
+            ax.annotate(txt, (values[i], y[sector][i]))
+    
+    for nodo, detalles in graph.items():
+        if graph[nodo]['esMasLejano']:
+            ax.plot(graph[nodo]['x'], graph[nodo]['y'], marker="x", color="lime")
+        if graph[nodo]['oficina']:
+            ax.plot(graph[nodo]['x'], graph[nodo]['y'], marker="*", color="yellow")
+        for vecino in detalles['vecinos']:
+            mitad_x = (graph[nodo]['x'] + graph[vecino['id']]['x']) / 2
+            mitad_y = (graph[nodo]['y'] + graph[vecino['id']]['y']) / 2
+            ax.annotate(f"{round(vecino['capacidad'], 2)}\n{round(vecino['longitud'], 2)}", (mitad_x, mitad_y), fontsize=7)
+    
+    
+
+    # Agregar etiquetas a las fuentes
+    for i, txt in enumerate(labels_fuente):
+        ax.annotate(txt, (x_fuente[i], y_fuente[i]))
+
+    plt.gca().set_aspect("equal")
+    plt.savefig(f"graficas/{titulo}.png", dpi=300)
+    plt.show()
+
 
 def save_graph_to_file(graph, name):
     with open(f"grafos/{name}_nuevo.txt", "w") as file:
