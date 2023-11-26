@@ -1,10 +1,10 @@
+Para el sector 1:
+Fuente: 1
+Nodo más lejano: 6
+Distancia: 10111.450112286499
+
 Para el sector 13:
 Fuente: 13
 Nodo más lejano: 8
-Distancia: 3512.15250972961
-
-Para el sector 1:
-Fuente: 1
-Nodo más lejano: 31
-Distancia: 7017.435786760005
+Distancia: 2530.5299999999997
 
