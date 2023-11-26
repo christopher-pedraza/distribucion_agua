@@ -158,6 +158,7 @@ def dijkstra(grafo, fuente):
 # Funcion para crear los sectores
 # Recibe: El grafo
 # Regresa: Nada
+# Complejidad O(Vertices +  Aristas)
 def crear_sector(grafo):
     # Se crea un grafo auxiliar para guardar las distancias desde cada fuente a todos los demas nodos
     grafo_distancias = {}
