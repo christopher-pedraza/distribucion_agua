@@ -1,0 +1,27 @@
+Sector: 19
+Origen: 19 | Destino: 2 | Flujo Máximo: 61.0
+	Tubería: 18->19	|	Capacidad: 61.0/61.0
+	Tubería: 12->18	|	Capacidad: 61.0/75.0
+	Tubería: 12->13	|	Capacidad: 61.0/205.0
+	Tubería: 13->14	|	Capacidad: 61.0/205.0
+	Tubería: 14->15	|	Capacidad: 61.0/205.0
+	Tubería: 1->15	|	Capacidad: 61.0/207.0
+	Tubería: 1->2	|	Capacidad: 61.0/181.0
+
+Sector: 17
+Origen: 17 | Destino: 3 | Flujo Máximo: 73.0
+	Tubería: 10->17	|	Capacidad: 73.0/73.0
+	Tubería: 9->10	|	Capacidad: 73.0/183.0
+	Tubería: 8->9	|	Capacidad: 73.0/133.0
+	Tubería: 7->8	|	Capacidad: 73.0/133.0
+	Tubería: 6->7	|	Capacidad: 73.0/181.0
+	Tubería: 5->6	|	Capacidad: 73.0/181.0
+	Tubería: 4->5	|	Capacidad: 73.0/181.0
+	Tubería: 3->4	|	Capacidad: 73.0/183.0
+
+Sector: 19
+Origen: 19 | Destino: 22 | Flujo Máximo: 20.0
+	Tubería: 18->19	|	Capacidad: 20.0/61.0
+	Tubería: 18->22	|	Capacidad: 20.0/20.0
+
+*Las aristas que no aparecen representan tuberías que no se usaron, y por ende, su capacidad seguiría siendo la misma

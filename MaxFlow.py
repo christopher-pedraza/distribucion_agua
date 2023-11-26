@@ -105,10 +105,10 @@ def max_flow(grafo, nodo_destino):
 # Función para guardar los resultados de Maxflow en un archivo
 # Recibe: Lista con diccionarios con los resultados de Maxflow, nombre del archivo, grafo
 # Regresa: Nada
-def save_to_file(data, name, grafo):
+def save_to_file(data, name, grafo, carpeta):
     prev_sector = ""
     # Abrir el archivo
-    with open(f"resultados/resultado_MaxFlow_{name}.txt", "w") as f:
+    with open(f"resultados/{carpeta}/resultado_MaxFlow_{name}.txt", "w") as f:
         # Iterar sobre los resultados
         for d in data:
             origen = d["origen"]
