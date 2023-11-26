@@ -102,22 +102,24 @@ def max_flow(grafo, nodo_destino):
     return flujos_maximos
 
 
-# Función para guardar los resultados en un archivo
-#
-def save_to_file(data, name, grafo):
+# Función para guardar los resultados de Maxflow en un archivo
+# Recibe: Lista con diccionarios con los resultados de Maxflow, nombre del archivo, grafo
+# Regresa: Nada
+def save_to_file(data, name, grafo, carpeta):
     prev_sector = ""
-    with open(f"resultados/resultado_MaxFlow_{name}.txt", "w") as f:
+    # Abrir el archivo
+    with open(f"resultados/{carpeta}/resultado_MaxFlow_{name}.txt", "w") as f:
+        # Iterar sobre los resultados
         for d in data:
             origen = d["origen"]
             destino = d["destino"]
             flujo = d["flujo"]
             path = d["path"]
+            # Si el sector del resultado es diferente al anterior, escribir el sector
             if prev_sector != d["sector"]:
                 f.write(f"Sector: {d['sector']}\n")
                 prev_sector = d["sector"]
             f.write(f"Origen: {origen} | Destino: {destino} | Flujo Máximo: {flujo}\n")
-
-            visited = {}
 
             for p in path:
                 for vecino in grafo[p[0]]["vecinos"]:
@@ -128,3 +130,6 @@ def save_to_file(data, name, grafo):
                         break
 
             f.write("\n")
+        f.write(
+            "*Las aristas que no aparecen representan tuberías que no se usaron, y por ende, su capacidad seguiría siendo la misma\n"
+        )

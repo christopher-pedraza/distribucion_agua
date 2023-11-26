@@ -17,3 +17,4 @@ Origen: 1 | Destino: 31 | Flujo Máximo: 16.0
 	Tubería: 25->32	|	Capacidad: 16.0/18.0
 	Tubería: 31->32	|	Capacidad: 16.0/16.0
 
+*Las aristas que no aparecen representan tuberías que no se usaron, y por ende, su capacidad seguiría siendo la misma

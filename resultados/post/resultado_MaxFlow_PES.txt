@@ -31,3 +31,4 @@ Origen: 7 | Destino: 21 | Flujo Máximo: 101.0
 	Tubería: 18->20	|	Capacidad: 101.0/101.0
 	Tubería: 20->21	|	Capacidad: 101.0/103.0
 
+*Las aristas que no aparecen representan tuberías que no se usaron, y por ende, su capacidad seguiría siendo la misma

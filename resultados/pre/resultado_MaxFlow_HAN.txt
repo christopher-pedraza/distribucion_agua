@@ -1,0 +1,20 @@
+Sector: 13
+Origen: 13 | Destino: 8 | Flujo Máximo: 16.0
+	Tubería: 12->13	|	Capacidad: 16.0/16.0
+	Tubería: 11->12	|	Capacidad: 16.0/16.0
+	Tubería: 10->11	|	Capacidad: 16.0/16.0
+	Tubería: 9->10	|	Capacidad: 16.0/18.0
+	Tubería: 8->9	|	Capacidad: 16.0/18.0
+
+Sector: 1
+Origen: 1 | Destino: 31 | Flujo Máximo: 16.0
+	Tubería: 1->2	|	Capacidad: 16.0/16.0
+	Tubería: 2->3	|	Capacidad: 16.0/16.0
+	Tubería: 3->20	|	Capacidad: 16.0/16.0
+	Tubería: 20->23	|	Capacidad: 16.0/16.0
+	Tubería: 23->24	|	Capacidad: 16.0/18.0
+	Tubería: 24->25	|	Capacidad: 16.0/16.0
+	Tubería: 25->32	|	Capacidad: 16.0/18.0
+	Tubería: 31->32	|	Capacidad: 16.0/16.0
+
+*Las aristas que no aparecen representan tuberías que no se usaron, y por ende, su capacidad seguiría siendo la misma
