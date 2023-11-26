@@ -180,6 +180,9 @@ def crear_sector(grafo):
                 # Se actualiza el diccionario
                 distancia = grafo_distancias[nodo2][nodo]
 
+    for nodo in grafo:
+        grafo[nodo]["esMasLejano"] = False
+
     # Calcular los nodos mas lejanos desde cada fuente y que esten en el mismo sector
     for fuente, distances in grafo_distancias.items():
         max_distance = float("-inf")
