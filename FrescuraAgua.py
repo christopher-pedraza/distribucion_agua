@@ -1,47 +1,43 @@
-# 4.- Frescura del agua en función de la distancia del nodo a la fuente.
-# Una métrica de la calidad del agua es el tiempo que tarda en llegar de la fuente a un nodo. Esto es proporcional a la distancia. Por cada sector, determina cuál seria el nodo que recibe el agua con mayor tardanza.
-# Reporta su distancia a la fuente.
-
 # Salidas: Por cada sector, su fuente, nodo mas lejano y la longitud de esa distancia.
 
-
-import math
-
-# Lista para almacenar las fuentes
+from Graph import dijkstra
 
 
-def max_delay_per_sector(graph, nombre_archivo):
-    fuentes = []
-    # Funcion para calcular el nodo mas lejano de cada sector y su distancia a la fuente usando dijkstra
+def max_delay_per_sector(graph):
     sectors = {}
+
     for node_id, node_info in graph.items():
-        if node_info["fuente"]:  # Excluir nodos fuentes
-            fuentes.append(node_id)
+        if node_info["fuente"]:
+            distances_from_node = dijkstra(graph, node_id)
 
-    distancia = 0
-    nodo_mas_lejano = 0
-    for index in range(len(fuentes)):
-        for node_id, node_info in graph.items():
-            if node_info["fuente"]:  # Excluir nodos fuentes
-                continue
-            if (
-                node_info["sector"] == graph[fuentes[index]]["sector"]
-            ):  # Incluir  nodos del mismo sector
-                result = math.sqrt(
-                    (graph[node_id]["x"] - graph[fuentes[index]]["x"]) ** 2
-                    + (graph[node_id]["y"] - graph[fuentes[index]]["y"]) ** 2
-                )
-                if result > distancia:
-                    distancia = result
-                    nodo_mas_lejano = node_id
+            # Calcular los nodos mas lejanos desde cada fuente y que esten en el mismo sector
+            max_distance = float("-inf")
+            farthest_node = None
+            # Se itera sobre los nodos del grafo auxiliar
+            for destination, distance in distances_from_node.items():
+                # Si la distancia es mayor a la distancia guardada en el diccionario se actualiza
+                if (
+                    distance > max_distance
+                    and graph[node_id]["sector"] == graph[destination]["sector"]
+                ):
+                    max_distance = distance
+                    farthest_node = destination
+            # Se marca el nodo como el mas lejano
+            if farthest_node is not None:
+                sectors[graph[node_id]["sector"]] = {
+                    "fuente": node_id,
+                    "nodo_mas_lejano": farthest_node,
+                    "distancia": max_distance,
+                }
 
-        # Guardar los resultados en un archivo de texto
-        with open(nombre_archivo, "w") as file:
-            file.write(f"Para el sector {fuentes[index]}:\n")
-            file.write(f"Fuente: {fuentes[index]}\n")
-            file.write(f"Nodo más lejano: {nodo_mas_lejano}\n")
-            file.write(f"Distancia: {distancia}\n\n")
+    return sectors
 
-        # Reiniciar variables
-        distancia = 0
-        nodo_mas_lejano = 0
+
+def guardar_resultados_en_archivo(nombre_archivo, resultados):
+    # Funcion para guardar los resultados en un archivo de texto
+    with open(nombre_archivo, "w") as file:
+        for sector, data in resultados.items():
+            print(f"Para el sector {sector}:", file=file)
+            print(f"Fuente: {data['fuente']}", file=file)
+            print(f"Nodo más lejano: {data['nodo_mas_lejano']}", file=file)
+            print(f"Distancia: {data['distancia']}\n", file=file)

@@ -364,7 +364,7 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
 
     puntos_lejanos = mlines.Line2D([], [], color="green", marker="x", label="Más Lejano" ,linestyle='None')
 
-    oficina = mlines.Line2D([], [], color="yellow", marker="*", label="Más Lejano" ,linestyle='None')
+    oficina = mlines.Line2D([], [], color="yellow", marker="*", label="Oficina" ,linestyle='None')
 
     # Agregar las líneas personalizadas a la leyenda sin graficarlas directamente
     ax.legend(

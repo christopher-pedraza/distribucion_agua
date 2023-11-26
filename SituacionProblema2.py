@@ -51,28 +51,25 @@ def problema_3(carpeta):
 
 
 def problema_4(carpeta):
-    grafo_FOS, new_nodes_FOS = Graph.create_graph("grafos/FOS.txt")
     Graph.crear_sector(grafo_FOS)
-    FrescuraAgua.max_delay_per_sector(
-        grafo_FOS, f"resultados/{carpeta}/resultado_FrescuraAgua_FOS.txt"
+    resultado_FOS = FrescuraAgua.max_delay_per_sector(grafo_FOS)
+    FrescuraAgua.guardar_resultados_en_archivo(
+        f"resultados/{carpeta}/resultado_FrescuraAgua_FOS.txt", resultado_FOS
     )
-
-    grafo_HAN, new_nodes_HAN = Graph.create_graph("grafos/HAN.txt")
     Graph.crear_sector(grafo_HAN)
-    FrescuraAgua.max_delay_per_sector(
-        grafo_HAN, f"resultados/{carpeta}/resultado_FrescuraAgua_HAN.txt"
+    resultado_HAN = FrescuraAgua.max_delay_per_sector(grafo_HAN)
+    FrescuraAgua.guardar_resultados_en_archivo(
+        f"resultados/{carpeta}/resultado_FrescuraAgua_HAN.txt", resultado_HAN
     )
-
-    grafo_NYT, new_nodes_NYT = Graph.create_graph("grafos/NYT.txt")
     Graph.crear_sector(grafo_NYT)
-    FrescuraAgua.max_delay_per_sector(
-        grafo_NYT, f"resultados/{carpeta}/resultado_FrescuraAgua_NYT.txt"
+    resultado_NYT = FrescuraAgua.max_delay_per_sector(grafo_NYT)
+    FrescuraAgua.guardar_resultados_en_archivo(
+        f"resultados/{carpeta}/resultado_FrescuraAgua_NYT.txt", resultado_NYT
     )
-
-    grafo_PES, new_nodes_PES = Graph.create_graph("grafos/PES.txt")
     Graph.crear_sector(grafo_PES)
-    FrescuraAgua.max_delay_per_sector(
-        grafo_PES, f"resultados/{carpeta}/resultado_FrescuraAgua_PES.txt"
+    resultado_PES = FrescuraAgua.max_delay_per_sector(grafo_PES)
+    FrescuraAgua.guardar_resultados_en_archivo(
+        f"resultados/{carpeta}/resultado_FrescuraAgua_PES.txt", resultado_PES
     )
 
 
@@ -121,10 +118,18 @@ def problema_5(carpeta):
 
 
 def desplegar_grafos(tuberias_cerradas, carpeta):
-    Graph.display_graph_detailed(grafo_FOS, tuberias_cerradas['FOS'], "Grafo con detalles del FOS", carpeta)
-    Graph.display_graph_detailed(grafo_HAN, tuberias_cerradas['HAN'], "Grafo con detalles del HAN", carpeta)
-    Graph.display_graph_detailed(grafo_NYT, tuberias_cerradas['NYT'], "Grafo con detalles del NYT", carpeta)
-    Graph.display_graph_detailed(grafo_PES, tuberias_cerradas['PES'], "Grafo con detalles del PES", carpeta)
+    Graph.display_graph_detailed(
+        grafo_FOS, tuberias_cerradas["FOS"], "Grafo con detalles del FOS", carpeta
+    )
+    Graph.display_graph_detailed(
+        grafo_HAN, tuberias_cerradas["HAN"], "Grafo con detalles del HAN", carpeta
+    )
+    Graph.display_graph_detailed(
+        grafo_NYT, tuberias_cerradas["NYT"], "Grafo con detalles del NYT", carpeta
+    )
+    Graph.display_graph_detailed(
+        grafo_PES, tuberias_cerradas["PES"], "Grafo con detalles del PES", carpeta
+    )
 
 
 if __name__ == "__main__":
