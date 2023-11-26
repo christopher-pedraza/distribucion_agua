@@ -30,6 +30,7 @@ def create_graph(file_name):
             "sector": None,
             "oficina": False,
             "esMasLejano": False,
+            "esNuevo": False,
         }
 
     # Guardar las aristas no dirigidas
@@ -92,6 +93,7 @@ def add_nodes(graph, new_nodes):
             "sector": None,
             "oficina": False,
             "esMasLejano": False,
+            "esNuevo": True,
         }
         # Se agrega el nuevo nodo a la lista de vecinos del nodo mas cercano
         graph[closest_node[1]]["vecinos"].append(
@@ -282,3 +284,29 @@ def display_graph(graph, tuberias_cerradas=[], titulo=""):
     plt.gca().set_aspect("equal")
 
     plt.show()
+
+
+def save_graph_to_file(graph, name):
+    with open(f"resultados/{name}_nuevo.txt", "w") as file:
+        # Contar la cantidad de nodos y aristas
+        node_count = len(graph)
+        edge_count = 0
+        for node_id, values in graph.items():
+            edge_count += len(values["vecinos"])
+        file.write(f"{node_count} {edge_count//2}\n")
+        file.write("[NODES]\n")
+
+        for node_id, values in graph.items():
+            file.write(
+                f"{node_id} {values['x']} {values['y']} {1 if values['fuente'] else 0}\n"
+            )
+        file.write("[EDGES]\n")
+        for node_id, values in graph.items():
+            for neighbor in values["vecinos"]:
+                neighbor_id = neighbor["id"]
+                if node_id < neighbor_id:
+                    file.write(f"{node_id} {neighbor_id} {neighbor['capacidad']}\n")
+        file.write("[OFFICE]\n")
+        for node_id, values in graph.items():
+            if values["oficina"]:
+                file.write(f"{node_id}\n")

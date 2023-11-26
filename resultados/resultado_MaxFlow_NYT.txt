@@ -19,3 +19,4 @@ Origen: 17 | Destino: 3 | Flujo Máximo: 73.0
 	Tubería: 4->5	|	Capacidad: 73.0/181.0
 	Tubería: 3->4	|	Capacidad: 73.0/183.0
 
+*Las aristas que no aparecen representan tuberías que no se usaron, y por ende, su capacidad seguiría siendo la misma
