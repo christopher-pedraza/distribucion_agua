@@ -1,0 +1,10 @@
+Para el sector 17:
+Fuente: 17
+Nodo más lejano: 3
+Distancia: 1883.3309581054664
+
+Para el sector 19:
+Fuente: 19
+Nodo más lejano: 22
+Distancia: 5876.872093574134
+

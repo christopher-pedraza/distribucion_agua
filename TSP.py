@@ -3,13 +3,19 @@ import Graph
 
 
 def TSP(fuente):
+
+    #Pasamos el grafo a lista de adyacencia.
+
     test_case={}
     # obten el grafo
     graph=Graph.create_graph(fuente)[0]
 
+    
     oficina=-1
 
     for id_,dictionary in graph.items():
+    
+        #Identificamos el nodo "oficina"
         if dictionary["oficina"]:
             oficina= int(id_)
         
@@ -19,10 +25,10 @@ def TSP(fuente):
             test_case[id_][vecino["id"]]=vecino["longitud"]
 
 
-    #print("GRAPH:",graph)
-    #print("TC",test_case)
-    #print("TEST CASE:", test_case)
 
+
+#Funcion para determinar el salto que damos, según el rating de cooling, decidimos
+#dar el salto con menor peso, o uno con cada vez más peso.
 
     def siguiente_salto(my_items,temp,prev):
         my_items.sort(key=lambda x: x[1])
@@ -30,7 +36,7 @@ def TSP(fuente):
         i=0
         while ((random.randrange(0,9)>temp) or my_items[i][0]==prev) and i<len(my_items)-1:
             i+=1
-        #print("VIBE:",prev,my_items[i])
+        
         return my_items[i]
 
 
@@ -42,22 +48,23 @@ def TSP(fuente):
 
         testing=[]
 
-
-        iterations=0
-        # n node travels
+        #Mientras tengamos nodos por visitar
         while len(visited)<len(test_case):
+            #lista de nodos nuevos
             my_items=[]
+            #lista de todos los nodos, solo se usa si solo hay nodos viejos
             old_items=[]
 
 
-
+            #Checamos los posibles saltos que podemos dar
             for node,cost in test_case[S[-1][0]].items():
+                #nodo nuevo
                 if node not in visited:
                     my_items.append((node,cost))
                 old_items.append((node,cost))
 
 
-            #my items list of (node,cost)
+            #my_items and old_items:list of (node,cost)
 
             #Hay al menos un nodo no visitado adyacente al nodo actual: 
             if my_items:
@@ -73,17 +80,6 @@ def TSP(fuente):
                 S.append(siguiente_salto(old_items,temp,S[-2][0]))
                 testing.append(S[-1][0])
             
-            #print("jump:", iterations,"---",S, "set:", len(visited),"\n")
-            iterations+=1
-            '''
-            if iterations>60:
-                listy=[]
-                for i in range(1,21):
-                    if i not in visited:
-                        listy.append(i)
-                print("not visited:" , listy , "\n")
-                sys.exit()
-            '''
 
         #Salimos del while anterior cuando solo falta regresar a home.
         while S[-1][0] != oficina:
@@ -109,7 +105,7 @@ def TSP(fuente):
 
         return [S[1:],total_cost]
             
-
+    #Iteraciones de montecarlo con temperatura cambiante
     def monte_carlo(temp,temp_cut,temp_min,best_so_far,oficina):
         while temp>temp_min:
             current=S_builder(temp,oficina)
@@ -124,20 +120,23 @@ def TSP(fuente):
     #print("\n")
     #print("low budget",monte_carlo(7,1,2,best_so_far))
     #print("medium budget",monte_carlo(7,0.5,1,best_so_far))
-
-
-
-
+    
+    #Obtenemos la respuesta
     ans=monte_carlo(7,0.01,0.5,best_so_far,oficina)
     return ans
     
     #print("meta budget",monte_carlo(7,0.002,0.02,best_so_far))
     #print("budget royale",monte_carlo(7,0.001,0.01,best_so_far))
 
-def add_file(fuente,file):
-    ans=TSP(fuente)
+def add_file(text_file_input,file):
+    ans=TSP(text_file_input)
     with open(file,"w") as my_file:
         for salto in ans[0]:
             my_file.write(f"salto a {salto[0]} con costo de {salto[1]} \n")
         my_file.write(f" \n \n COSTO TOTAL : {ans[1]}")
-
+    
+    jumps=[]
+    for i in range(1,len(ans[0])):
+        jumps.append((ans[0][i-1][0],ans[0][i][0]))
+    return [jumps,ans[1]]
+        

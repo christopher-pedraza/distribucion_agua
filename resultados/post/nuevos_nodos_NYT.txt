@@ -1,0 +1,3 @@
+Nodo nuevo: 21	|	Conectado a: 13	|	Distancia: 150.0133327407934
+Nodo nuevo: 22	|	Conectado a: 18	|	Distancia: 5567.225520849681
+Nodo nuevo: 23	|	Conectado a: 20	|	Distancia: 217.04377438664304
