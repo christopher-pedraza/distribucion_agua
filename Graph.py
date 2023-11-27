@@ -298,7 +298,7 @@ def display_graph(graph, tuberias_cerradas=[], titulo=""):
 
     plt.show()
 
-def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
+def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta,TSP_path,TSP_cost):
     # Coordenadas de los nodos
     x = {}
     y = {}
@@ -334,22 +334,27 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
     # Desplegar las conexiones entre nodos
     for node_id, values in graph.items():
         # Recorrer los vecinos del nodo
+
+        #Identificar si son parte del recorrido de TSP:
+
         for neighbor in values["vecinos"]:
             neighbor_id = neighbor["id"]
             # Para solo hacer la conexión una vez
             # Se checa tambien que la tuberia no este cerrada
-            if (
+            x_values = [values["x"], graph[neighbor_id]["x"]]
+            y_values = [values["y"], graph[neighbor_id]["y"]]
+           
+            if((int(node_id),int(neighbor_id)) in TSP_path ):
+                ax.plot(x_values, y_values, color="green", linewidth=1)
+            
+            elif (
                 node_id < neighbor_id
                 and (node_id, neighbor_id) not in tuberias_cerradas
             ):
-                x_values = [values["x"], graph[neighbor_id]["x"]]
-                y_values = [values["y"], graph[neighbor_id]["y"]]
-                ax.plot(x_values, y_values, color="black", linewidth=0.5)
+                ax.plot(x_values, y_values, color="black", linewidth=1)
             # Para las tuberias cerradas
             elif node_id < neighbor_id:
-                x_values = [values["x"], graph[neighbor_id]["x"]]
-                y_values = [values["y"], graph[neighbor_id]["y"]]
-                ax.plot(x_values, y_values, color="gray", linewidth=0.5, linestyle=":")
+                ax.plot(x_values, y_values, color="red", linewidth=0.5, linestyle=":")
 
     # Desplegar las fuentes
     ax.scatter(x_fuente, y_fuente, color="blue", marker="^")
@@ -359,7 +364,7 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
         [], [], color="black", linewidth=0.5, label="Tuberías"
     )
     cerradas_line = mlines.Line2D(
-        [], [], color="gray", linewidth=0.5, linestyle=":", label="Tuberías Cerradas"
+        [], [], color="red", linewidth=0.5, linestyle=":", label="Tuberías Cerradas"
     )
     fuentes_de_Agua = mlines.Line2D([], [], color="blue", marker="^", label="Fuente", linestyle='None')
 
@@ -367,9 +372,16 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta):
 
     oficina = mlines.Line2D([], [], color="yellow", marker="*", label="Oficina" ,linestyle='None')
 
+    TSP_info= mlines.Line2D([], [], color="green", linewidth=0.5, label=f"Recorrido TSP, costo(int)={int(TSP_cost)}")
+
+# tuberias_line = mlines.Line2D([], [], color="black", linewidth=0.5, label="Tuberías")
+
+
+
+
     # Agregar las líneas personalizadas a la leyenda sin graficarlas directamente
     ax.legend(
-        handles=[fuentes_de_Agua, tuberias_line, cerradas_line, puntos_lejanos, oficina], loc="upper right"
+        handles=[fuentes_de_Agua, tuberias_line, cerradas_line, puntos_lejanos, oficina,TSP_info], loc="upper right"
     )
 
     plt.title(titulo)

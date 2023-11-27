@@ -3,6 +3,7 @@ import LongitudTuberias
 import FrescuraAgua
 import Sectorizacion
 import MaxFlow
+import TSP
 
 
 def problema_2(carpeta):
@@ -117,19 +118,46 @@ def problema_5(carpeta):
         MaxFlow.save_to_file(data, grafo[1], grafo[0], carpeta)
 
 
-def desplegar_grafos(tuberias_cerradas, carpeta):
+def desplegar_grafos(tuberias_cerradas, carpeta,TSP_path,TSP_cost):
     Graph.display_graph_detailed(
-        grafo_FOS, tuberias_cerradas["FOS"], "Grafo con detalles del FOS", carpeta
+        grafo_FOS, tuberias_cerradas["FOS"], "Grafo con detalles del FOS", carpeta,TSP_path["FOS"],TSP_cost["FOS"]
     )
     Graph.display_graph_detailed(
-        grafo_HAN, tuberias_cerradas["HAN"], "Grafo con detalles del HAN", carpeta
+        grafo_HAN, tuberias_cerradas["HAN"], "Grafo con detalles del HAN", carpeta,TSP_path["HAN"],TSP_cost["HAN"]
     )
     Graph.display_graph_detailed(
-        grafo_NYT, tuberias_cerradas["NYT"], "Grafo con detalles del NYT", carpeta
+        grafo_NYT, tuberias_cerradas["NYT"], "Grafo con detalles del NYT", carpeta, TSP_path["NYT"],TSP_cost["NYT"]
     )
     Graph.display_graph_detailed(
-        grafo_PES, tuberias_cerradas["PES"], "Grafo con detalles del PES", carpeta
+        grafo_PES, tuberias_cerradas["PES"], "Grafo con detalles del PES", carpeta, TSP_path["PES"],TSP_cost["PES"]
     )
+
+
+def problema_TSP(carpeta):
+    if carpeta=="pre":
+        path_FOS=TSP.add_file("grafos/FOS.txt",f"resultados/{carpeta}/resultado_TSP_FOS")
+        path_HAN=TSP.add_file("grafos/HAN.txt",f"resultados/{carpeta}/resultado_TSP_HAN")
+        path_NYT=TSP.add_file("grafos/NYT.txt",f"resultados/{carpeta}/resultado_TSP_NYT")
+        path_PES=TSP.add_file("grafos/PES.txt",f"resultados/{carpeta}/resultado_TSP_PES")
+    else:
+        path_FOS=TSP.add_file("grafos/FOS_nuevo.txt",f"resultados/{carpeta}/resultado_TSP_FOS")
+        path_HAN=TSP.add_file("grafos/HAN_nuevo.txt",f"resultados/{carpeta}/resultado_TSP_HAN")
+        path_NYT=TSP.add_file("grafos/NYT_nuevo.txt",f"resultados/{carpeta}/resultado_TSP_NYT")
+        path_PES=TSP.add_file("grafos/PES_nuevo.txt",f"resultados/{carpeta}/resultado_TSP_PES")
+    return  [{
+        "FOS": path_FOS[0],
+        "HAN": path_HAN[0],
+        "NYT": path_NYT[0],
+        "PES": path_PES[0],
+    } ,
+    {
+        "FOS": path_FOS[1],
+        "HAN": path_HAN[1],
+        "NYT": path_NYT[1],
+        "PES": path_PES[1],
+    } ]
+
+
 
 
 if __name__ == "__main__":
@@ -143,7 +171,8 @@ if __name__ == "__main__":
     tuberias_cerradas = problema_3("pre")
     problema_4("pre")
     problema_5("pre")
-    desplegar_grafos(tuberias_cerradas, "pre")
+    TSPpath=problema_TSP("pre")
+    desplegar_grafos(tuberias_cerradas, "pre",TSPpath[0],TSPpath[1])
 
     problema_7()
 
@@ -151,4 +180,5 @@ if __name__ == "__main__":
     tuberias_cerradas = problema_3("post")
     problema_4("post")
     problema_5("post")
-    desplegar_grafos(tuberias_cerradas, "post")
+    TSPpath=problema_TSP("post")
+    desplegar_grafos(tuberias_cerradas, "post",TSPpath[0],TSPpath[1])
