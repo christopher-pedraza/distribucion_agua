@@ -351,10 +351,10 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta,TSP_path,TS
                 node_id < neighbor_id
                 and (node_id, neighbor_id) not in tuberias_cerradas
             ):
-                ax.plot(x_values, y_values, color="black", linewidth=0.5)
+                ax.plot(x_values, y_values, color="black", linewidth=1)
             # Para las tuberias cerradas
             elif node_id < neighbor_id:
-                ax.plot(x_values, y_values, color="gray", linewidth=0.5, linestyle=":")
+                ax.plot(x_values, y_values, color="red", linewidth=0.5, linestyle=":")
 
     # Desplegar las fuentes
     ax.scatter(x_fuente, y_fuente, color="blue", marker="^")
@@ -364,7 +364,7 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta,TSP_path,TS
         [], [], color="black", linewidth=0.5, label="Tuberías"
     )
     cerradas_line = mlines.Line2D(
-        [], [], color="gray", linewidth=0.5, linestyle=":", label="Tuberías Cerradas"
+        [], [], color="red", linewidth=0.5, linestyle=":", label="Tuberías Cerradas"
     )
     fuentes_de_Agua = mlines.Line2D([], [], color="blue", marker="^", label="Fuente", linestyle='None')
 
@@ -372,7 +372,7 @@ def display_graph_detailed(graph, tuberias_cerradas, titulo, carpeta,TSP_path,TS
 
     oficina = mlines.Line2D([], [], color="yellow", marker="*", label="Oficina" ,linestyle='None')
 
-    TSP_info= mlines.Line2D([], [], color="green", linewidth=0.5, label=f"Recorrido TSP, costo={TSP_cost}")
+    TSP_info= mlines.Line2D([], [], color="green", linewidth=0.5, label=f"Recorrido TSP, costo(int)={int(TSP_cost)}")
 
 # tuberias_line = mlines.Line2D([], [], color="black", linewidth=0.5, label="Tuberías")
 

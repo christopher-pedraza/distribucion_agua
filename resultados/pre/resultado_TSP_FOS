@@ -1,35 +1,34 @@
 salto a 4 con costo de 0 
-salto a 12 con costo de 365.1744587180215 
-salto a 13 con costo de 1376.0299206412635 
-salto a 5 con costo de 528.7168408515098 
-salto a 6 con costo de 2284.7853910597382 
-salto a 21 con costo de 1426.6247100761996 
-salto a 14 con costo de 440.06118892717575 
+salto a 5 con costo de 1432.8586858444903 
+salto a 13 con costo de 528.7168408515098 
+salto a 14 con costo de 761.9999057742722 
 salto a 20 con costo de 261.57886306045447 
 salto a 15 con costo de 732.8330348722001 
-salto a 22 con costo de 547.4320929576563 
-salto a 23 con costo de 699.0436556467699 
-salto a 25 con costo de 512.854240501139 
-salto a 16 con costo de 556.6075566321394 
-salto a 27 con costo de 680.0943158856721 
-salto a 32 con costo de 523.6603465033414 
-salto a 33 con costo de 974.6505643562724 
-salto a 34 con costo de 240.6168100943906 
-salto a 35 con costo de 1121.1413785067432 
+salto a 26 con costo de 773.0301934594793 
+salto a 11 con costo de 564.7515632559149 
+salto a 10 con costo de 977.4038950710184 
+salto a 32 con costo de 345.3693560523288 
+salto a 27 con costo de 523.6603465033414 
+salto a 16 con costo de 680.0943158856721 
+salto a 25 con costo de 556.6075566321394 
+salto a 23 con costo de 512.854240501139 
+salto a 22 con costo de 699.0436556467699 
+salto a 21 con costo de 996.3156665434908 
+salto a 6 con costo de 1426.6247100761996 
+salto a 7 con costo de 926.3699999999999 
+salto a 24 con costo de 1363.5641221812784 
+salto a 8 con costo de 899.1618394927574 
+salto a 28 con costo de 983.0849605705503 
+salto a 29 con costo de 996.0373271117901 
+salto a 30 con costo de 385.0671843977357 
+salto a 35 con costo de 700.40474163158 
 salto a 36 con costo de 566.4701008879464 
 salto a 9 con costo de 1253.3226452115193 
 salto a 30 con costo de 841.5044133574114 
 salto a 29 con costo de 385.0671843977357 
-salto a 28 con costo de 996.0373271117901 
-salto a 8 con costo de 983.0849605705503 
-salto a 24 con costo de 899.1618394927574 
-salto a 7 con costo de 1363.5641221812784 
-salto a 22 con costo de 2159.6999765013657 
-salto a 15 con costo de 547.4320929576563 
-salto a 26 con costo de 773.0301934594793 
-salto a 11 con costo de 564.7515632559149 
-salto a 10 con costo de 977.4038950710184 
-salto a 31 con costo de 1230.767968262093 
+salto a 33 con costo de 1458.962266030209 
+salto a 34 con costo de 240.6168100943906 
+salto a 31 con costo de 413.67570547471104 
 salto a 1 con costo de 505.46701662917604 
 salto a 37 con costo de 612.003855053218 
 salto a 1 con costo de 612.003855053218 
@@ -43,4 +42,4 @@ salto a 12 con costo de 666.694026146928
 salto a 4 con costo de 365.1744587180215 
  
  
- COSTO TOTAL : 36423.061694510485
+ COSTO TOTAL : 32796.91017337131
