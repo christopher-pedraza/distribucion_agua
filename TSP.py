@@ -46,7 +46,7 @@ def TSP(fuente):
         visited.add(oficina)
         S=[(oficina,0),(oficina,0)]
 
-        testing=[]
+        
 
         #Mientras tengamos nodos por visitar
         while len(visited)<len(test_case):
@@ -73,12 +73,12 @@ def TSP(fuente):
                 #mayor peso
                 S.append(siguiente_salto(my_items,temp,S[-2][0]))
                 visited.add(S[-1][0])
-                testing.append(S[-1][0])
+                
             
             #Si no hay un nodo no visitado, regresate a uno
             else:
                 S.append(siguiente_salto(old_items,temp,S[-2][0]))
-                testing.append(S[-1][0])
+                
             
 
         #Salimos del while anterior cuando solo falta regresar a home.
